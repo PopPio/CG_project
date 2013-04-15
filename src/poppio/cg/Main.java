@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -25,6 +26,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.KeyStroke;
 
 
 public class Main extends JFrame{
@@ -42,6 +44,7 @@ public class Main extends JFrame{
 		
 	}
 	
+	
 	private void initComponents() throws IOException {
 		// setup OpenGL Version 2
     	GLProfile profile = GLProfile.get(GLProfile.GL2);
@@ -58,36 +61,53 @@ public class Main extends JFrame{
         JMenuBar menuBar = new JMenuBar();
         //File
         JMenu menu_file = new JMenu("File");
+        menu_file.setMnemonic(KeyEvent.VK_F);
         menuBar.add(menu_file);
         
         JMenuItem menuItem_new = new JMenuItem("New");
+        menuItem_new.setMnemonic(KeyEvent.VK_N);
+        menuItem_new.setAccelerator(KeyStroke.getKeyStroke(
+                KeyEvent.VK_N, ActionEvent.CTRL_MASK));
         menuItem_new.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){menuItemsPerformed(e);}});   
         menu_file.add(menuItem_new);
         
+        menu_file.addSeparator();
+        
         JMenuItem menuItem_exit = new JMenuItem("Exit");
+        menuItem_exit.setMnemonic(KeyEvent.VK_X);
         menuItem_exit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){menuItemsPerformed(e);}});   
         menu_file.add(menuItem_exit);
         
         //Object
         JMenu menu_object = new JMenu("Object");
+        menu_object.setMnemonic(KeyEvent.VK_O);
         menuBar.add(menu_object);
         
         JMenuItem menuItem_add_light = new JMenuItem("Add Light");
+        menuItem_add_light.setMnemonic(KeyEvent.VK_L);
+        menuItem_add_light.setAccelerator(KeyStroke.getKeyStroke(
+                KeyEvent.VK_L, ActionEvent.CTRL_MASK));
         menuItem_add_light.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){menuItemsPerformed(e);}});   
         menu_object.add(menuItem_add_light);
+        
         JMenuItem menuItem_add_furniture = new JMenuItem("Add Furniture");
+        menuItem_add_furniture.setMnemonic(KeyEvent.VK_U);
+        menuItem_add_furniture.setAccelerator(KeyStroke.getKeyStroke(
+                KeyEvent.VK_U, ActionEvent.CTRL_MASK));
         menuItem_add_furniture.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){menuItemsPerformed(e);}});   
         menu_object.add(menuItem_add_furniture);
         
         //Help
         JMenu menu_help = new JMenu("Help");
+        menu_help.setMnemonic(KeyEvent.VK_H);
         menuBar.add(menu_help);
         
         JMenuItem menuItem_about = new JMenuItem("About RLS");
+        menuItem_about.setMnemonic(KeyEvent.VK_A);
         menuItem_about.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){menuItemsPerformed(e);}});     
         menu_help.add(menuItem_about);
@@ -107,6 +127,7 @@ public class Main extends JFrame{
         objectListModel = new DefaultListModel();
         objectList = new JList(objectListModel);
         objectList.setVisibleRowCount(10);
+        
         JScrollPane objectScrollPane = new JScrollPane(objectList);
         menuPanel.add(objectScrollPane, BorderLayout.PAGE_START);
         
@@ -130,6 +151,7 @@ public class Main extends JFrame{
      	setTitle("Room Lighting Simulation");
         setSize( this.getContentPane().getPreferredSize() );
         setVisible( true );
+        setLocationRelativeTo(null); // place JFrame in center of screen
 	}
 	
 	public static void main(String[] args) {
@@ -204,7 +226,7 @@ public class Main extends JFrame{
 	 * @param component
 	 * @param width
 	 */
-	public static void setFixedWidth( Component component, int width ){
+	private static void setFixedWidth( Component component, int width ){
 		component.setSize( new Dimension( width, Short.MAX_VALUE ) );
 		Dimension preferredSize = component.getPreferredSize();
 		component.setPreferredSize( new Dimension( width, preferredSize.height ) );

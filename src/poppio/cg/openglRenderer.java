@@ -9,7 +9,7 @@ public class openglRenderer implements GLEventListener {
 
 	@Override
 	public void display(GLAutoDrawable gldrawable) {
-		//split 2 stages
+		//split 2 stage
 		//System.out.println("display called");
 		update();
 		render(gldrawable);

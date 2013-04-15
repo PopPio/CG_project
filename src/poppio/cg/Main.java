@@ -20,6 +20,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -35,6 +36,8 @@ public class Main extends JFrame{
 	
 	JList objectList;
 	DefaultListModel objectListModel;
+	
+	ImageButton button_up, button_down, button_left, button_right, button_low, button_high;
 	
 	public Main () throws IOException{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -135,15 +138,39 @@ public class Main extends JFrame{
         	addObjectToList("test"+i);
 		}
         
+        //Button
+        // up button
+        button_up = new ImageButton(new ImageIcon(ImageIO.read(Main.class.getResource("img/up.png"))));
+        button_down = new ImageButton(new ImageIcon(ImageIO.read(Main.class.getResource("img/down.png"))));
+        button_left = new ImageButton(new ImageIcon(ImageIO.read(Main.class.getResource("img/left.png"))));
+        button_right = new ImageButton(new ImageIcon(ImageIO.read(Main.class.getResource("img/right.png"))));
+        JLabel blank = new JLabel(new ImageIcon((ImageIO.read(Main.class.getResource("img/blank.png")))));
         
+        button_up.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){imagebuttonPerformed(e);}});
+        button_down.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){imagebuttonPerformed(e);}});
+        button_left.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){imagebuttonPerformed(e);}});
+        button_right.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){imagebuttonPerformed(e);}});
+        
+        JPanel moveButtonGroup = new JPanel();
+        moveButtonGroup.setLayout(new BorderLayout());
+        moveButtonGroup.add(button_up, BorderLayout.PAGE_START);
+        moveButtonGroup.add(button_down, BorderLayout.PAGE_END);
+        moveButtonGroup.add(button_left, BorderLayout.LINE_START);
+        moveButtonGroup.add(button_right, BorderLayout.LINE_END);
+        moveButtonGroup.add(blank, BorderLayout.CENTER);
+        subPanel.add(moveButtonGroup);
+        
+        // delete button
         SimpleButton button_delete = new SimpleButton("Delete",new Color(0xC91010), Color.WHITE);
         button_delete.setPreferredSize(new Dimension(75, 30));
-        java.net.URL delete_icon_URL = Main.class.getResource("img/delete.png");
-     	BufferedImage delete_icon_img = ImageIO.read(delete_icon_URL);
-     	ImageIcon delete_icon = new ImageIcon(delete_icon_img);
+     	ImageIcon delete_icon = new ImageIcon(ImageIO.read(Main.class.getResource("img/delete.png")));
      	button_delete.setIcon(delete_icon);
         button_delete.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){buttonPerformed(e);}});
+            public void actionPerformed(ActionEvent e){simplebuttonPerformed(e);}});
         subPanel.add(button_delete);
         
         getContentPane().add(glcanvas, BorderLayout.CENTER);
@@ -219,10 +246,31 @@ public class Main extends JFrame{
 	 * method for buttons action listener
 	 * @param evt
 	 */
-	public void buttonPerformed(ActionEvent evt) {
+	public void simplebuttonPerformed(ActionEvent evt) {
 		JButton pressedItem = (JButton) evt.getSource();
 		if(pressedItem.getText().equalsIgnoreCase("Delete")){
 			System.out.println("button \"Delete\" pressed");
+		}
+	}
+	
+	/**
+	 * method for img buttons action listener
+	 * @param evt
+	 */
+	public void imagebuttonPerformed(ActionEvent evt) {
+		
+		if(evt.getSource()==button_up){
+			System.out.println("button \"Up\" pressed");
+			
+		}else if(evt.getSource()==button_down){
+			System.out.println("button \"Down\" pressed");
+			
+		}else if(evt.getSource()==button_left){
+			System.out.println("button \"Left\" pressed");
+			
+		}else if(evt.getSource()==button_right){
+			System.out.println("button \"Right\" pressed");
+			
 		}
 	}
 	

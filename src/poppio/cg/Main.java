@@ -45,8 +45,6 @@ public class Main extends JFrame{
     	glcanvas.addGLEventListener(new openglRenderer());
     	glcanvas.setSize( 600, 600 ); // set size of canvas
 		
-		//JFrame frame = new JFrame( "Room Lighting Simulation" );
-       // frame.getContentPane().add(glcanvas);
  
         //UI
     	//MenuBar
@@ -95,7 +93,6 @@ public class Main extends JFrame{
                 try {
 					new Main().setVisible(true);
 				} catch (IOException e) {
-					
 					e.printStackTrace();
 				}
             }

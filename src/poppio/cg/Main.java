@@ -137,7 +137,11 @@ public class Main extends JFrame{
         
         
         SimpleButton button_delete = new SimpleButton("Delete",new Color(0xC91010), Color.WHITE);
-        button_delete.setPreferredSize(new Dimension(60, 30));
+        button_delete.setPreferredSize(new Dimension(75, 30));
+        java.net.URL delete_icon_URL = Main.class.getResource("img/delete.png");
+     	BufferedImage delete_icon_img = ImageIO.read(delete_icon_URL);
+     	ImageIcon delete_icon = new ImageIcon(delete_icon_img);
+     	button_delete.setIcon(delete_icon);
         button_delete.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){buttonPerformed(e);}});
         subPanel.add(button_delete);

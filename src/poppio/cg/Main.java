@@ -4,10 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.KeyEventDispatcher;
+import java.awt.KeyboardFocusManager;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -130,6 +133,7 @@ public class Main extends JFrame{
         objectListModel = new DefaultListModel();
         objectList = new JList(objectListModel);
         objectList.setVisibleRowCount(10);
+        objectList.setFocusable(false);
         
         JScrollPane objectScrollPane = new JScrollPane(objectList);
         menuPanel.add(objectScrollPane, BorderLayout.PAGE_START);
@@ -184,6 +188,11 @@ public class Main extends JFrame{
         setSize( this.getContentPane().getPreferredSize() );
         setVisible( true );
         setLocationRelativeTo(null); // place JFrame in center of screen
+       
+        //getContentPane().setFocusTraversalKeysEnabled(false);
+        
+        KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+        manager.addKeyEventDispatcher(new MyDispatcher());
 	}
 	
 	public static void main(String[] args) {
@@ -249,7 +258,10 @@ public class Main extends JFrame{
 	public void simplebuttonPerformed(ActionEvent evt) {
 		JButton pressedItem = (JButton) evt.getSource();
 		if(pressedItem.getText().equalsIgnoreCase("Delete")){
-			System.out.println("button \"Delete\" pressed");
+			//System.out.println("button \"Delete\" pressed");
+			int index = objectList.getSelectedIndex();
+			String selected = (String)objectListModel.get(index);
+			System.out.println("Delete "+selected);
 		}
 	}
 	
@@ -284,4 +296,25 @@ public class Main extends JFrame{
 		Dimension preferredSize = component.getPreferredSize();
 		component.setPreferredSize( new Dimension( width, preferredSize.height ) );
 	}
+
+	// keyboard listener
+	private class MyDispatcher implements KeyEventDispatcher {
+        @Override
+        public boolean dispatchKeyEvent(KeyEvent e) {
+            if (e.getID() == KeyEvent.KEY_PRESSED) {
+            	
+            	
+            	if(e.getKeyCode() == KeyEvent.VK_UP){
+            		System.out.println("key \"Up\" pressed");
+            	}
+            	
+                //System.out.println("key pressed");
+            } else if (e.getID() == KeyEvent.KEY_RELEASED) {
+                //System.out.println("key released");
+            } else if (e.getID() == KeyEvent.KEY_TYPED) {
+                //System.out.println("key typeed");
+            }
+            return false;
+        }
+    }
 }

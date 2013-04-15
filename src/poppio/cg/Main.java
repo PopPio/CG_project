@@ -2,6 +2,7 @@ package poppio.cg;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -54,6 +55,12 @@ public class Main extends JFrame{
         menuBar.add(menu_file);
         
         menuItem_exit = new JMenuItem("Exit");
+        menuItem_exit.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+            {
+            	menuItemsPerformed(e);
+            }
+        });   
         menu_file.add(menuItem_exit);
         
         //Help
@@ -87,9 +94,7 @@ public class Main extends JFrame{
 	public static void main(String[] args) {
 		
 		java.awt.EventQueue.invokeLater(new Runnable() {
-
             public void run() {
-                
                 try {
 					new Main().setVisible(true);
 				} catch (IOException e) {
@@ -120,7 +125,9 @@ public class Main extends JFrame{
 				    icon);
 			System.out.println("\"About RLS\" pressed");
 		}else if(pressedItem.getText().equalsIgnoreCase("Exit")){
-			super.dispose();
+			WindowEvent wev = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
+            Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(wev);
+            System.out.println("\"Exit\" pressed");
 		}
 	}
 

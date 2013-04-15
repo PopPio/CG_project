@@ -1,6 +1,7 @@
 package poppio.cg;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -32,7 +33,6 @@ import javax.swing.KeyStroke;
 public class Main extends JFrame{
 	String version = "0.01"; 
 	
-	JButton button_delete;
 	JList objectList;
 	DefaultListModel objectListModel;
 	
@@ -136,7 +136,8 @@ public class Main extends JFrame{
 		}
         
         
-        button_delete = new JButton("Delete");
+        SimpleButton button_delete = new SimpleButton("Delete",new Color(0xC91010), Color.WHITE);
+        button_delete.setPreferredSize(new Dimension(60, 30));
         button_delete.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){buttonPerformed(e);}});
         subPanel.add(button_delete);

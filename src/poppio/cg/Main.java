@@ -144,9 +144,17 @@ public class Main extends JFrame{
         //Button
         // up button
         button_up = new ImageButton(new ImageIcon(ImageIO.read(Main.class.getResource("img/up.png"))));
+        button_up.setRolloverIcon(new ImageIcon(ImageIO.read(Main.class.getResource("img/up_over.png"))));
+        button_up.setPressedIcon(new ImageIcon(ImageIO.read(Main.class.getResource("img/up_press.png"))));
         button_down = new ImageButton(new ImageIcon(ImageIO.read(Main.class.getResource("img/down.png"))));
+        button_down.setRolloverIcon(new ImageIcon(ImageIO.read(Main.class.getResource("img/down_over.png"))));
+        button_down.setPressedIcon(new ImageIcon(ImageIO.read(Main.class.getResource("img/down_press.png"))));
         button_left = new ImageButton(new ImageIcon(ImageIO.read(Main.class.getResource("img/left.png"))));
+        button_left.setRolloverIcon(new ImageIcon(ImageIO.read(Main.class.getResource("img/left_over.png"))));
+        button_left.setPressedIcon(new ImageIcon(ImageIO.read(Main.class.getResource("img/left_press.png"))));
         button_right = new ImageButton(new ImageIcon(ImageIO.read(Main.class.getResource("img/right.png"))));
+        button_right.setRolloverIcon(new ImageIcon(ImageIO.read(Main.class.getResource("img/right_over.png"))));
+        button_right.setPressedIcon(new ImageIcon(ImageIO.read(Main.class.getResource("img/right_press.png"))));
         JLabel blank = new JLabel(new ImageIcon((ImageIO.read(Main.class.getResource("img/blank.png")))));
         
         button_up.addActionListener(new ActionListener() {

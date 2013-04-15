@@ -1,11 +1,11 @@
 package poppio.cg;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -14,19 +14,25 @@ import javax.imageio.ImageIO;
 import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLProfile;
 import javax.media.opengl.awt.GLCanvas;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 
 public class Main extends JFrame{
-	JMenuBar menuBar;
-	JMenu menu_file,menu_help;
-	JMenuItem menuItem_exit,
-				menuItem_about;
+	String version = "0.01"; 
+	
+	JButton button_delete;
+	JList objectList;
+	DefaultListModel objectListModel;
 	
 	public Main () throws IOException{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,40 +55,75 @@ public class Main extends JFrame{
  
         //UI
     	//MenuBar
-        menuBar = new JMenuBar();
+        JMenuBar menuBar = new JMenuBar();
         //File
-        menu_file = new JMenu("File");
+        JMenu menu_file = new JMenu("File");
         menuBar.add(menu_file);
         
-        menuItem_exit = new JMenuItem("Exit");
+        JMenuItem menuItem_new = new JMenuItem("New");
+        menuItem_new.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){menuItemsPerformed(e);}});   
+        menu_file.add(menuItem_new);
+        
+        JMenuItem menuItem_exit = new JMenuItem("Exit");
         menuItem_exit.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e)
-            {
-            	menuItemsPerformed(e);
-            }
-        });   
+            public void actionPerformed(ActionEvent e){menuItemsPerformed(e);}});   
         menu_file.add(menuItem_exit);
         
+        //Object
+        JMenu menu_object = new JMenu("Object");
+        menuBar.add(menu_object);
+        
+        JMenuItem menuItem_add_light = new JMenuItem("Add Light");
+        menuItem_add_light.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){menuItemsPerformed(e);}});   
+        menu_object.add(menuItem_add_light);
+        JMenuItem menuItem_add_furniture = new JMenuItem("Add Furniture");
+        menuItem_add_furniture.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){menuItemsPerformed(e);}});   
+        menu_object.add(menuItem_add_furniture);
+        
         //Help
-        menu_help = new JMenu("Help");
+        JMenu menu_help = new JMenu("Help");
         menuBar.add(menu_help);
         
-        menuItem_about = new JMenuItem("About RLS");
+        JMenuItem menuItem_about = new JMenuItem("About RLS");
         menuItem_about.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e)
-            {
-            	menuItemsPerformed(e);
-            }
-        });     
+            public void actionPerformed(ActionEvent e){menuItemsPerformed(e);}});     
         menu_help.add(menuItem_about);
         
         this.setJMenuBar(menuBar);
         
         
-      
-        // set icon
-        getContentPane().add(glcanvas, BorderLayout.CENTER);
+        // left panel
+        JPanel menuPanel = new JPanel();
+        menuPanel.setLayout(new BorderLayout());
         
+        JPanel subPanel = new JPanel();
+        setFixedWidth(subPanel, 300);
+        menuPanel.add(subPanel, BorderLayout.CENTER);
+
+        
+        objectListModel = new DefaultListModel();
+        objectList = new JList(objectListModel);
+        objectList.setVisibleRowCount(10);
+        JScrollPane objectScrollPane = new JScrollPane(objectList);
+        menuPanel.add(objectScrollPane, BorderLayout.PAGE_START);
+        
+        for (int i = 0; i < 15; i++) {
+        	addObjectToList("test"+i);
+		}
+        
+        
+        button_delete = new JButton("Delete");
+        button_delete.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){buttonPerformed(e);}});
+        subPanel.add(button_delete);
+        
+        getContentPane().add(glcanvas, BorderLayout.CENTER);
+        getContentPane().add(menuPanel, BorderLayout.LINE_START);
+        
+        // set icon
         java.net.URL icon_URL = Main.class.getResource("img/logo.png");
      	BufferedImage frame_icon = ImageIO.read(icon_URL);
      	setIconImage(frame_icon);
@@ -104,31 +145,68 @@ public class Main extends JFrame{
         });
 
 	}
-
 	
+	private void addObjectToList(Object obj){
+		objectListModel.addElement(obj);
+	}
+	
+	/**
+	 * method for top menu bar action listener
+	 * @param evt
+	 */
 	public void menuItemsPerformed(ActionEvent evt) {
 		JMenuItem pressedItem = (JMenuItem) evt.getSource();
-		if(pressedItem.getText().equalsIgnoreCase("About RLS")){
-			 java.net.URL icon_URL = Main.class.getResource("img/logo.png");
+		if(pressedItem.getText().equalsIgnoreCase("New")){
+			System.out.println("menu \"New\" pressed");
+			
+		}else if(pressedItem.getText().equalsIgnoreCase("Exit")){
+			// close program
+			System.out.println("menu \"Exit\" pressed");
+			WindowEvent wev = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
+            Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(wev);
+		}else if(pressedItem.getText().equalsIgnoreCase("Add Light")){
+			System.out.println("menu \"Add Light\" pressed");
+			
+		}else if(pressedItem.getText().equalsIgnoreCase("Add Furniture")){
+			System.out.println("menu \"Add Furniture\" pressed");
+			
+		}else if(pressedItem.getText().equalsIgnoreCase("About RLS")){
+			System.out.println("menu \"About RLS\" pressed");
+			java.net.URL icon_URL = Main.class.getResource("img/logo.png");
 		     	BufferedImage frame_icon = null;
 				try {
 					frame_icon = ImageIO.read(icon_URL);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 		     	ImageIcon icon = new ImageIcon(frame_icon);
 			JOptionPane.showMessageDialog(this,
-				    "Room lighting Simulation\nGraphics Computing 2143424\nChulalongkorn University\n\n5231222721 Chawalit Aojanepong\n5231334321 Suwichapol Jinnawong\n5500197921 Pierre-Edouard Arrouy\n\n(c) Room Lighting Simulation contributors 2013. All rights reserved.",
+				    "Room lighting Simulation v"+version+"\nGraphics Computing 2143424\nChulalongkorn University\n\n5231222721 Chawalit Aojanepong\n5231334321 Suwichapol Jinnawong\n5500197921 Pierre-Edouard Arrouy\n\n(c) Room Lighting Simulation contributors 2013. All rights reserved.",
 				    "About Room Lighting Simulation",
 				    JOptionPane.INFORMATION_MESSAGE,
 				    icon);
-			System.out.println("\"About RLS\" pressed");
-		}else if(pressedItem.getText().equalsIgnoreCase("Exit")){
-			WindowEvent wev = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
-            Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(wev);
-            System.out.println("\"Exit\" pressed");
 		}
 	}
-
+	
+	/**
+	 * method for buttons action listener
+	 * @param evt
+	 */
+	public void buttonPerformed(ActionEvent evt) {
+		JButton pressedItem = (JButton) evt.getSource();
+		if(pressedItem.getText().equalsIgnoreCase("Delete")){
+			System.out.println("button \"Delete\" pressed");
+		}
+	}
+	
+	/**
+	 * set component width
+	 * @param component
+	 * @param width
+	 */
+	public static void setFixedWidth( Component component, int width ){
+		component.setSize( new Dimension( width, Short.MAX_VALUE ) );
+		Dimension preferredSize = component.getPreferredSize();
+		component.setPreferredSize( new Dimension( width, preferredSize.height ) );
+	}
 }

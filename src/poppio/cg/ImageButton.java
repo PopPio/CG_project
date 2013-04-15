@@ -12,6 +12,8 @@ public class ImageButton extends JButton{
         setBorderPainted(false);
         setContentAreaFilled(false);
         setIcon((img));
+        //setOpaque(false);
+        setFocusPainted(false);
 	}
 	
 	

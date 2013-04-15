@@ -23,6 +23,7 @@ public class SimpleButton extends JButton{
 		this.setFocusPainted(false);
 		this.setBackground(bg);
 		this.setForeground(text);
+		this.setFocusPainted(false);
 	}
 	
 	public SimpleButton (String name, Color bg, Color text) {
@@ -33,5 +34,6 @@ public class SimpleButton extends JButton{
 		this.setBackground(bg);
 		this.setForeground(text);
 		this.setText(name);
+		this.setFocusPainted(false);
 	}
 }

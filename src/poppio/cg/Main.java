@@ -117,7 +117,7 @@ public class Main extends JFrame{
 				}
 		     	ImageIcon icon = new ImageIcon(frame_icon);
 			JOptionPane.showMessageDialog(this,
-				    "Room lighting Simulation\nGraphics Computing 2143424\nChulalongkorn University\n\n5231222721 Chawalit Aojanepong\n5231334321 Suwichapol Jinnawong\n5500197921 Pierre-Edouard Arrouy\n\n(c) ",
+				    "Room lighting Simulation\nGraphics Computing 2143424\nChulalongkorn University\n\n5231222721 Chawalit Aojanepong\n5231334321 Suwichapol Jinnawong\n5500197921 Pierre-Edouard Arrouy\n\n(c) Room Lighting Simulation contributors 2013. All rights reserved.",
 				    "About Room Lighting Simulation",
 				    JOptionPane.INFORMATION_MESSAGE,
 				    icon);

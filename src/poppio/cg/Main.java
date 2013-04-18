@@ -44,6 +44,9 @@ public class Main extends JFrame{
 	
 	ImageButton button_up, button_down, button_left, button_right, button_low, button_high;
 	
+	ImageIcon imgBtnUp,imgBtnDown,imgBtnLeft,imgBtnRight,imgBtnHigh,imgBtnLow;
+	ImageIcon imgBtnUpPress,imgBtnDownPress,imgBtnLeftPress,imgBtnRightPress,imgBtnHighPress,imgBtnLowPress;
+	
 	Color deleteButtonColor = new Color(0xC91010);
 	Color deleteButtonOverColor = new Color(0x960303);
 	Color addButtonColor = new Color(0xEF7409);
@@ -214,18 +217,27 @@ public class Main extends JFrame{
         
         //Button
         // up button
-        button_up = new ImageButton(new ImageIcon(ImageIO.read(Main.class.getResource("img/up.png"))));
+        imgBtnUp = new ImageIcon(ImageIO.read(Main.class.getResource("img/up.png")));
+        imgBtnDown = new ImageIcon(ImageIO.read(Main.class.getResource("img/down.png")));
+        imgBtnLeft = new ImageIcon(ImageIO.read(Main.class.getResource("img/left.png")));
+        imgBtnRight = new ImageIcon(ImageIO.read(Main.class.getResource("img/right.png")));
+        imgBtnUpPress = new ImageIcon(ImageIO.read(Main.class.getResource("img/up_press.png")));
+        imgBtnDownPress = new ImageIcon(ImageIO.read(Main.class.getResource("img/down_press.png")));
+        imgBtnLeftPress = new ImageIcon(ImageIO.read(Main.class.getResource("img/left_press.png")));
+        imgBtnRightPress = new ImageIcon(ImageIO.read(Main.class.getResource("img/right_press.png")));
+        
+        button_up = new ImageButton(imgBtnUp);
         button_up.setRolloverIcon(new ImageIcon(ImageIO.read(Main.class.getResource("img/up_over.png"))));
-        button_up.setPressedIcon(new ImageIcon(ImageIO.read(Main.class.getResource("img/up_press.png"))));
-        button_down = new ImageButton(new ImageIcon(ImageIO.read(Main.class.getResource("img/down.png"))));
+        button_up.setPressedIcon(imgBtnUpPress);
+        button_down = new ImageButton(imgBtnDown);
         button_down.setRolloverIcon(new ImageIcon(ImageIO.read(Main.class.getResource("img/down_over.png"))));
-        button_down.setPressedIcon(new ImageIcon(ImageIO.read(Main.class.getResource("img/down_press.png"))));
-        button_left = new ImageButton(new ImageIcon(ImageIO.read(Main.class.getResource("img/left.png"))));
+        button_down.setPressedIcon(imgBtnDownPress);
+        button_left = new ImageButton(imgBtnLeft);
         button_left.setRolloverIcon(new ImageIcon(ImageIO.read(Main.class.getResource("img/left_over.png"))));
-        button_left.setPressedIcon(new ImageIcon(ImageIO.read(Main.class.getResource("img/left_press.png"))));
-        button_right = new ImageButton(new ImageIcon(ImageIO.read(Main.class.getResource("img/right.png"))));
+        button_left.setPressedIcon(imgBtnLeftPress);
+        button_right = new ImageButton(imgBtnRight);
         button_right.setRolloverIcon(new ImageIcon(ImageIO.read(Main.class.getResource("img/right_over.png"))));
-        button_right.setPressedIcon(new ImageIcon(ImageIO.read(Main.class.getResource("img/right_press.png"))));
+        button_right.setPressedIcon(imgBtnRightPress);
         JLabel blank = new JLabel(new ImageIcon((ImageIO.read(Main.class.getResource("img/blank.png")))));
         
         button_up.addActionListener(new ActionListener() {
@@ -251,12 +263,17 @@ public class Main extends JFrame{
         controlPanel.add(new JLabel(new ImageIcon(ImageIO.read(Main.class.getResource("img/blank_small.png")))));
 
         // height button
-        button_high = new ImageButton(new ImageIcon(ImageIO.read(Main.class.getResource("img/higher.png"))));
+        imgBtnHigh = new ImageIcon(ImageIO.read(Main.class.getResource("img/higher.png")));
+        imgBtnLow = new ImageIcon(ImageIO.read(Main.class.getResource("img/lower.png")));
+        imgBtnHighPress = new ImageIcon(ImageIO.read(Main.class.getResource("img/higher_press.png")));
+        imgBtnLowPress = new ImageIcon(ImageIO.read(Main.class.getResource("img/lower_press.png")));
+        
+        button_high = new ImageButton(imgBtnHigh);
         button_high.setRolloverIcon(new ImageIcon(ImageIO.read(Main.class.getResource("img/higher_over.png"))));
-        button_high.setPressedIcon(new ImageIcon(ImageIO.read(Main.class.getResource("img/higher_press.png"))));
-        button_low = new ImageButton(new ImageIcon(ImageIO.read(Main.class.getResource("img/lower.png"))));
+        button_high.setPressedIcon(imgBtnHighPress);
+        button_low = new ImageButton(imgBtnLow);
         button_low.setRolloverIcon(new ImageIcon(ImageIO.read(Main.class.getResource("img/lower_over.png"))));
-        button_low.setPressedIcon(new ImageIcon(ImageIO.read(Main.class.getResource("img/lower_press.png"))));
+        button_low.setPressedIcon(imgBtnLowPress);
         JLabel blank_small = new JLabel(new ImageIcon((ImageIO.read(Main.class.getResource("img/blank_small.png")))));
 
         button_high.addActionListener(new ActionListener() {
@@ -503,26 +520,44 @@ public class Main extends JFrame{
             if (e.getID() == KeyEvent.KEY_PRESSED) {
             	if(e.getKeyCode() == KeyEvent.VK_UP){
             		System.out.println("key \"up arrow\" pressed");
+            		button_up.setIcon(imgBtnUpPress);
             		moveForward();
             	}else if(e.getKeyCode() == KeyEvent.VK_DOWN){
             		System.out.println("key \"down arrow\" pressed");
+            		button_down.setIcon(imgBtnDownPress);
             		moveBackward();
             	}else if(e.getKeyCode() == KeyEvent.VK_LEFT){
             		System.out.println("key \"left arrow\" pressed");
+            		button_left.setIcon(imgBtnLeftPress);
             		moveLeft();
             	}else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
             		System.out.println("key \"right arrow\" pressed");
+            		button_right.setIcon(imgBtnRightPress);
             		moveRight();
             	}else if(e.getKeyCode() == KeyEvent.VK_PAGE_UP){
             		System.out.println("key \"page up\" pressed");
+            		button_high.setIcon(imgBtnHighPress);
             		moveUp();
             	}else if(e.getKeyCode() == KeyEvent.VK_PAGE_DOWN){
             		System.out.println("key \"page down\" pressed");
+            		button_low.setIcon(imgBtnLowPress);
             		moveDown();
             	}
                 
             } else if (e.getID() == KeyEvent.KEY_RELEASED) {
-                //System.out.println("key released");
+            	if(e.getKeyCode() == KeyEvent.VK_UP){
+            		button_up.setIcon(imgBtnUp);
+            	}else if(e.getKeyCode() == KeyEvent.VK_DOWN){
+            		button_down.setIcon(imgBtnDown);
+            	}else if(e.getKeyCode() == KeyEvent.VK_LEFT){
+            		button_left.setIcon(imgBtnLeft);
+            	}else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+            		button_right.setIcon(imgBtnRight);
+            	}else if(e.getKeyCode() == KeyEvent.VK_PAGE_UP){
+            		button_high.setIcon(imgBtnHigh);
+            	}else if(e.getKeyCode() == KeyEvent.VK_PAGE_DOWN){
+            		button_low.setIcon(imgBtnLow);
+            	}
             } else if (e.getID() == KeyEvent.KEY_TYPED) {
                 //System.out.println("key typeed");
             }

@@ -1,3 +1,5 @@
+// This file responsible for UI of our program.
+
 package poppio.cg;
 
 import java.awt.BorderLayout;
@@ -90,6 +92,55 @@ public class Main extends JFrame{
         menuItem_exit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){menuItemsPerformed(e);}});   
         menu_file.add(menuItem_exit);
+        
+        //Edit
+        JMenu menu_edit = new JMenu("Edit entity");
+        menu_edit.setMnemonic(KeyEvent.VK_E);
+        menuBar.add(menu_edit);
+        
+        JMenuItem menuItem_rotateClockwise = new JMenuItem("Rotate clockwise");
+        menuItem_rotateClockwise.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){menuItemsPerformed(e);}});   
+        menu_edit.add(menuItem_rotateClockwise);
+        
+        JMenuItem menuItem_rotateCounter = new JMenuItem("Rotate counterclockwise");
+        menuItem_rotateCounter.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){menuItemsPerformed(e);}});   
+        menu_edit.add(menuItem_rotateCounter);
+        
+        menu_edit.addSeparator();
+        
+        JMenuItem menuItem_moveForward = new JMenuItem("Move forward");
+        menuItem_moveForward.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){menuItemsPerformed(e);}});   
+        menu_edit.add(menuItem_moveForward);
+        
+        JMenuItem menuItem_moveBackward = new JMenuItem("Move backward");
+        menuItem_moveBackward.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){menuItemsPerformed(e);}});   
+        menu_edit.add(menuItem_moveBackward);
+        
+        JMenuItem menuItem_moveLeft = new JMenuItem("Move left");
+        menuItem_moveLeft.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){menuItemsPerformed(e);}});   
+        menu_edit.add(menuItem_moveLeft);
+        
+        JMenuItem menuItem_moveRight = new JMenuItem("Move right");
+        menuItem_moveRight.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){menuItemsPerformed(e);}});   
+        menu_edit.add(menuItem_moveRight);
+        
+        menu_edit.addSeparator();
+        
+        JMenuItem menuItem_moveUp = new JMenuItem("Move up");
+        menuItem_moveUp.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){menuItemsPerformed(e);}});   
+        menu_edit.add(menuItem_moveUp);
+        
+        JMenuItem menuItem_moveDown = new JMenuItem("Move down");
+        menuItem_moveDown.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){menuItemsPerformed(e);}});   
+        menu_edit.add(menuItem_moveDown);
         
         //Object
         JMenu menu_object = new JMenu("Object");
@@ -339,18 +390,42 @@ public class Main extends JFrame{
 		JMenuItem pressedItem = (JMenuItem) evt.getSource();
 		if(pressedItem.getText().equalsIgnoreCase("New")){
 			System.out.println("menu \"New\" pressed");
-			
+			// clear all data
 		}else if(pressedItem.getText().equalsIgnoreCase("Exit")){
 			// close program
 			System.out.println("menu \"Exit\" pressed");
 			WindowEvent wev = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
             Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(wev);
+		}else if(pressedItem.getText().equalsIgnoreCase("Rotate clockwise")){
+			System.out.println("menu \"Rotate clockwise\" pressed");
+			// process
+		}else if(pressedItem.getText().equalsIgnoreCase("Rotate counterclockwise")){
+			System.out.println("menu \"Rotate counterclockwise\" pressed");
+			// process
+		}else if(pressedItem.getText().equalsIgnoreCase("Move forward")){
+			System.out.println("menu \"Move forward\" pressed");
+			// process
+		}else if(pressedItem.getText().equalsIgnoreCase("Move backward")){
+			System.out.println("menu \"Move backward\" pressed");
+			// process
+		}else if(pressedItem.getText().equalsIgnoreCase("Move left")){
+			System.out.println("menu \"Move left\" pressed");
+			// process
+		}else if(pressedItem.getText().equalsIgnoreCase("Move right")){
+			System.out.println("menu \"Move right\" pressed");
+			// process
+		}else if(pressedItem.getText().equalsIgnoreCase("Move up")){
+			System.out.println("menu \"Move up\" pressed");
+			// process
+		}else if(pressedItem.getText().equalsIgnoreCase("Move down")){
+			System.out.println("menu \"Move down\" pressed");
+			// process
 		}else if(pressedItem.getText().equalsIgnoreCase("Add Light")){
 			System.out.println("menu \"Add Light\" pressed");
-			
+			// create "Add Light" Dialog ?
 		}else if(pressedItem.getText().equalsIgnoreCase("Add Furniture")){
 			System.out.println("menu \"Add Furniture\" pressed");
-			
+			// create "Add Object" Dialog ?
 		}else if(pressedItem.getText().equalsIgnoreCase("About RLS")){
 			System.out.println("menu \"About RLS\" pressed");
 			java.net.URL icon_URL = Main.class.getResource("img/logo.png");

@@ -18,6 +18,7 @@ import javax.imageio.ImageIO;
 import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLProfile;
 import javax.media.opengl.awt.GLCanvas;
+import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -40,6 +41,11 @@ public class Main extends JFrame{
 	DefaultListModel objectListModel;
 	
 	ImageButton button_up, button_down, button_left, button_right, button_low, button_high;
+	
+	Color deleteButtonColor = new Color(0xC91010);
+	Color deleteButtonOverColor = new Color(0x960303);
+	Color addButtonColor = new Color(0xEF7409);
+	Color addButtonOverColor = new Color(0xD66000);
 	
 	public Main () throws IOException{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -118,15 +124,13 @@ public class Main extends JFrame{
         menu_help.add(menuItem_about);
         
         this.setJMenuBar(menuBar);
-        
+        // end menu
         
         // left panel
         JPanel menuPanel = new JPanel();
         menuPanel.setLayout(new BorderLayout());
-        
-        JPanel subPanel = new JPanel();
-        setFixedWidth(subPanel, 300);
-        menuPanel.add(subPanel, BorderLayout.CENTER);
+        menuPanel.setBackground(Color.white);
+       
 
         
         objectListModel = new DefaultListModel();
@@ -137,9 +141,25 @@ public class Main extends JFrame{
         JScrollPane objectScrollPane = new JScrollPane(objectList);
         menuPanel.add(objectScrollPane, BorderLayout.PAGE_START);
         
+        //TODO delete this test list data
         for (int i = 0; i < 15; i++) {
         	addObjectToList("test"+i);
 		}
+        
+        
+        
+        JPanel subPanel = new JPanel();
+        subPanel.setLayout(new BorderLayout());
+       
+       
+        
+        JPanel controlPanel = new JPanel();
+       // subPanel.setLayout(new BorderLayout());
+        //setFixedWidth(controlPanel, 300);
+        controlPanel.setPreferredSize(new Dimension(300, 150));
+        controlPanel.setOpaque(false);
+        menuPanel.add(controlPanel, BorderLayout.CENTER);
+        
         
         //Button
         // up button
@@ -168,36 +188,124 @@ public class Main extends JFrame{
         
         JPanel moveButtonGroup = new JPanel();
         moveButtonGroup.setLayout(new BorderLayout());
+        moveButtonGroup.setOpaque(false);
         moveButtonGroup.add(button_up, BorderLayout.PAGE_START);
         moveButtonGroup.add(button_down, BorderLayout.PAGE_END);
         moveButtonGroup.add(button_left, BorderLayout.LINE_START);
         moveButtonGroup.add(button_right, BorderLayout.LINE_END);
         moveButtonGroup.add(blank, BorderLayout.CENTER);
-        subPanel.add(moveButtonGroup);
+        controlPanel.add(moveButtonGroup, BorderLayout.LINE_START);
         
+        controlPanel.add(new JLabel(new ImageIcon(ImageIO.read(Main.class.getResource("img/blank_small.png")))));
+        controlPanel.add(new JLabel(new ImageIcon(ImageIO.read(Main.class.getResource("img/blank_small.png")))));
+
+        // height button
+        button_high = new ImageButton(new ImageIcon(ImageIO.read(Main.class.getResource("img/higher.png"))));
+        button_high.setRolloverIcon(new ImageIcon(ImageIO.read(Main.class.getResource("img/higher_over.png"))));
+        button_high.setPressedIcon(new ImageIcon(ImageIO.read(Main.class.getResource("img/higher_press.png"))));
+        button_low = new ImageButton(new ImageIcon(ImageIO.read(Main.class.getResource("img/lower.png"))));
+        button_low.setRolloverIcon(new ImageIcon(ImageIO.read(Main.class.getResource("img/lower_over.png"))));
+        button_low.setPressedIcon(new ImageIcon(ImageIO.read(Main.class.getResource("img/lower_press.png"))));
+        JLabel blank_small = new JLabel(new ImageIcon((ImageIO.read(Main.class.getResource("img/blank_small.png")))));
+
+        button_high.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){imagebuttonPerformed(e);}});
+        button_low.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){imagebuttonPerformed(e);}});
+        
+        JPanel heightButtonGroup = new JPanel();
+        heightButtonGroup.setLayout(new BorderLayout());
+        heightButtonGroup.setOpaque(false);
+        heightButtonGroup.add(button_high, BorderLayout.PAGE_START);
+        heightButtonGroup.add(button_low, BorderLayout.PAGE_END);
+        heightButtonGroup.add(blank_small, BorderLayout.CENTER);
+        controlPanel.add(heightButtonGroup, BorderLayout.LINE_END);
+        //end control button group
+        
+        // bottom group
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.setPreferredSize(new Dimension(300, 180));
+        bottomPanel.setOpaque(false);
+        // delete button group
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setOpaque(false);
         // delete button
-        SimpleButton button_delete = new SimpleButton("Delete",new Color(0xC91010), Color.WHITE);
+        final SimpleButton button_delete = new SimpleButton("Delete", deleteButtonColor, Color.WHITE);
         button_delete.setPreferredSize(new Dimension(75, 30));
+        button_delete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+            	button_delete.setBackground(deleteButtonOverColor);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+            	button_delete.setBackground(deleteButtonColor);
+            }
+        });
      	ImageIcon delete_icon = new ImageIcon(ImageIO.read(Main.class.getResource("img/delete.png")));
      	button_delete.setIcon(delete_icon);
         button_delete.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){simplebuttonPerformed(e);}});
-        subPanel.add(button_delete);
+        buttonPanel.add(button_delete, BorderLayout.LINE_END);
+        
+        
+        // add buttons group
+        JPanel addButtonPanel = new JPanel();
+        addButtonPanel.setLayout(new BorderLayout());
+        addButtonPanel.setOpaque(false);
+        
+        final SimpleButton button_add_object = new SimpleButton("Add Object",addButtonColor, Color.WHITE);
+        button_add_object.setPreferredSize(new Dimension(100, 30));
+        button_add_object.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+            	button_add_object.setBackground(addButtonOverColor);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+            	button_add_object.setBackground(addButtonColor);
+            }
+        });
+     	ImageIcon add_object_icon = new ImageIcon(ImageIO.read(Main.class.getResource("img/add_object.png")));
+     	button_add_object.setIcon(add_object_icon);
+     	button_add_object.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){simplebuttonPerformed(e);}});
+     	
+     	 final SimpleButton button_add_light = new SimpleButton("Add Light",addButtonColor, Color.WHITE);
+     	button_add_light.setPreferredSize(new Dimension(90, 30));
+     	button_add_light.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+            	button_add_light.setBackground(addButtonOverColor);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+            	button_add_light.setBackground(addButtonColor);
+            }
+        });
+      	ImageIcon add_light_icon = new ImageIcon(ImageIO.read(Main.class.getResource("img/add_light.png")));
+      	button_add_light.setIcon(add_light_icon);
+      	button_add_light.addActionListener(new ActionListener() {
+             public void actionPerformed(ActionEvent e){simplebuttonPerformed(e);}});
+     	
+     	addButtonPanel.add(button_add_object,BorderLayout.LINE_START);
+     	addButtonPanel.add(button_add_light,BorderLayout.LINE_END);
+        
+        menuPanel.add(bottomPanel, BorderLayout.PAGE_END);
+        bottomPanel.setLayout(new BorderLayout());
+        bottomPanel.add(buttonPanel,BorderLayout.PAGE_START);
+        bottomPanel.add(addButtonPanel,BorderLayout.PAGE_END);
+        // end bottom group
+        
         
         getContentPane().add(glcanvas, BorderLayout.CENTER);
         getContentPane().add(menuPanel, BorderLayout.LINE_START);
         
-        // set icon
+        // set icon for frame
         java.net.URL icon_URL = Main.class.getResource("img/logo.png");
      	BufferedImage frame_icon = ImageIO.read(icon_URL);
      	setIconImage(frame_icon);
+     	// set frame
      	setTitle("Room Lighting Simulation");
         setSize( this.getContentPane().getPreferredSize() );
         setVisible( true );
         setLocationRelativeTo(null); // place JFrame in center of screen
-       
-        //getContentPane().setFocusTraversalKeysEnabled(false);
         
+        // detect keyboard, for keyboard shortcut
         KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
         manager.addKeyEventDispatcher(new MyDispatcher());
 	}
@@ -270,8 +378,17 @@ public class Main extends JFrame{
 		if(pressedItem.getText().equalsIgnoreCase("Delete")){
 			//System.out.println("button \"Delete\" pressed");
 			int index = objectList.getSelectedIndex();
-			String selected = (String)objectListModel.get(index);
-			System.out.println("Delete "+selected);
+			if(index>=0){
+				String selected = (String)objectListModel.get(index);
+				System.out.println("Delete "+selected);
+			}else{
+				System.out.println("No item selected, cannot delete.");
+			}
+			
+		}else if(pressedItem.getText().equalsIgnoreCase("Add Object")){
+			System.out.println("\"Add Object\" pressed");
+		}else if(pressedItem.getText().equalsIgnoreCase("Add Light")){
+			System.out.println("\"Add Light\" pressed");
 		}
 	}
 	
@@ -292,6 +409,12 @@ public class Main extends JFrame{
 			
 		}else if(evt.getSource()==button_right){
 			System.out.println("button \"Right\" pressed");
+			
+		}else if(evt.getSource()==button_high){
+			System.out.println("button \"Higher\" pressed");
+			
+		}else if(evt.getSource()==button_low){
+			System.out.println("button \"Lower\" pressed");
 			
 		}
 	}

@@ -398,28 +398,28 @@ public class Main extends JFrame{
             Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(wev);
 		}else if(pressedItem.getText().equalsIgnoreCase("Rotate clockwise")){
 			System.out.println("menu \"Rotate clockwise\" pressed");
-			// process
+			rotateClockwise();
 		}else if(pressedItem.getText().equalsIgnoreCase("Rotate counterclockwise")){
 			System.out.println("menu \"Rotate counterclockwise\" pressed");
-			// process
+			rotateCounter();
 		}else if(pressedItem.getText().equalsIgnoreCase("Move forward")){
 			System.out.println("menu \"Move forward\" pressed");
-			// process
+			moveForward();
 		}else if(pressedItem.getText().equalsIgnoreCase("Move backward")){
 			System.out.println("menu \"Move backward\" pressed");
-			// process
+			moveBackward();
 		}else if(pressedItem.getText().equalsIgnoreCase("Move left")){
 			System.out.println("menu \"Move left\" pressed");
-			// process
+			moveLeft();
 		}else if(pressedItem.getText().equalsIgnoreCase("Move right")){
 			System.out.println("menu \"Move right\" pressed");
-			// process
+			moveRight();
 		}else if(pressedItem.getText().equalsIgnoreCase("Move up")){
 			System.out.println("menu \"Move up\" pressed");
-			// process
+			moveUp();
 		}else if(pressedItem.getText().equalsIgnoreCase("Move down")){
 			System.out.println("menu \"Move down\" pressed");
-			// process
+			moveDown();
 		}else if(pressedItem.getText().equalsIgnoreCase("Add Light")){
 			System.out.println("menu \"Add Light\" pressed");
 			// create "Add Light" Dialog ?
@@ -452,7 +452,7 @@ public class Main extends JFrame{
 		JButton pressedItem = (JButton) evt.getSource();
 		if(pressedItem.getText().equalsIgnoreCase("Delete")){
 			//System.out.println("button \"Delete\" pressed");
-			int index = objectList.getSelectedIndex();
+			int index = getCurrentSelectedItemIndex();
 			if(index>=0){
 				String selected = (String)objectListModel.get(index);
 				System.out.println("Delete "+selected);
@@ -468,29 +468,29 @@ public class Main extends JFrame{
 	}
 	
 	/**
-	 * method for img buttons action listener
+	 * method for control buttons action listener
 	 * @param evt
 	 */
 	public void imagebuttonPerformed(ActionEvent evt) {
 		
 		if(evt.getSource()==button_up){
 			System.out.println("button \"Up\" pressed");
-			
+			moveForward();
 		}else if(evt.getSource()==button_down){
 			System.out.println("button \"Down\" pressed");
-			
+			moveBackward();
 		}else if(evt.getSource()==button_left){
 			System.out.println("button \"Left\" pressed");
-			
+			moveLeft();
 		}else if(evt.getSource()==button_right){
 			System.out.println("button \"Right\" pressed");
-			
+			moveRight();
 		}else if(evt.getSource()==button_high){
 			System.out.println("button \"Higher\" pressed");
-			
+			moveUp();
 		}else if(evt.getSource()==button_low){
 			System.out.println("button \"Lower\" pressed");
-			
+			moveDown();
 		}
 	}
 	
@@ -525,4 +525,125 @@ public class Main extends JFrame{
             return false;
         }
     }
+	/**
+	 * get selected index of list
+	 * @return int index
+	 */
+	private int getCurrentSelectedItemIndex(){
+		return objectList.getSelectedIndex();
+	}
+	
+	// +++++++++++++++++++++ EDIT ENTITY METHODS +++++++++++++++++++++
+	/**
+	 * move selected item in the list forward
+	 */
+	private void moveForward(){
+		int index = getCurrentSelectedItemIndex();
+		if(index>=0){
+			String selected = (String)objectListModel.get(index);
+			System.out.println("Move "+ selected + " forward.");
+			// move it, move it
+		}else{
+			System.out.println("No item selected, noting moved.");
+		}
+	}
+	
+	/**
+	 * move selected item in the list backward
+	 */
+	private void moveBackward(){
+		int index = getCurrentSelectedItemIndex();
+		if(index>=0){
+			String selected = (String)objectListModel.get(index);
+			System.out.println("Move "+ selected + " backward.");
+			// move it
+		}else{
+			System.out.println("No item selected, noting moved.");
+		}
+	}
+	
+	
+	/**
+	 * move selected item in the list to the left
+	 */
+	private void moveLeft(){
+		int index = getCurrentSelectedItemIndex();
+		if(index>=0){
+			String selected = (String)objectListModel.get(index);
+			System.out.println("Move "+ selected + " to the left.");
+			// move it
+		}else{
+			System.out.println("No item selected, noting moved.");
+		}
+	}
+	
+	/**
+	 * move selected item in the list to the right
+	 */
+	private void moveRight(){
+		int index = getCurrentSelectedItemIndex();
+		if(index>=0){
+			String selected = (String)objectListModel.get(index);
+			System.out.println("Move "+ selected + " to the right.");
+			// move it
+		}else{
+			System.out.println("No item selected, noting moved.");
+		}
+	}
+	
+	/**
+	 * move selected item in the list upward
+	 */
+	private void moveUp(){
+		int index = getCurrentSelectedItemIndex();
+		if(index>=0){
+			String selected = (String)objectListModel.get(index);
+			System.out.println("Move "+ selected + " upward.");
+			// move it
+		}else{
+			System.out.println("No item selected, noting moved.");
+		}
+	}
+	
+	/**
+	 * move selected item in the list downward
+	 */
+	private void moveDown(){
+		int index = getCurrentSelectedItemIndex();
+		if(index>=0){
+			String selected = (String)objectListModel.get(index);
+			System.out.println("Move "+ selected + " downward.");
+			// move it
+		}else{
+			System.out.println("No item selected, noting moved.");
+		}
+	}
+	
+	/**
+	 * rotate selected item in the list clockwise
+	 */
+	private void rotateClockwise(){
+		int index = getCurrentSelectedItemIndex();
+		if(index>=0){
+			String selected = (String)objectListModel.get(index);
+			System.out.println("Rotate "+ selected + " clockwise.");
+			// move it
+		}else{
+			System.out.println("No item selected, noting Rotated.");
+		}
+	}
+	
+	/**
+	 * rotate selected item in the list counterclockwise
+	 */
+	private void rotateCounter(){
+		int index = getCurrentSelectedItemIndex();
+		if(index>=0){
+			String selected = (String)objectListModel.get(index);
+			System.out.println("Rotate "+ selected + " counterclockwise.");
+			// move it
+		}else{
+			System.out.println("No item selected, noting Rotated.");
+		}
+	}
 }

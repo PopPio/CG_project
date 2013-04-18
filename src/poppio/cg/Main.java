@@ -193,7 +193,7 @@ public class Main extends JFrame{
         menuPanel.add(objectScrollPane, BorderLayout.PAGE_START);
         
         //TODO delete this test list data
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 6; i++) {
         	addObjectToList("test"+i);
 		}
         
@@ -303,8 +303,8 @@ public class Main extends JFrame{
         addButtonPanel.setLayout(new BorderLayout());
         addButtonPanel.setOpaque(false);
         
-        final SimpleButton button_add_object = new SimpleButton("Add Object",addButtonColor, Color.WHITE);
-        button_add_object.setPreferredSize(new Dimension(100, 30));
+        final SimpleButton button_add_object = new SimpleButton("Add Furniture",addButtonColor, Color.WHITE);
+        button_add_object.setPreferredSize(new Dimension(110, 30));
         button_add_object.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
             	button_add_object.setBackground(addButtonOverColor);
@@ -422,10 +422,10 @@ public class Main extends JFrame{
 			moveDown();
 		}else if(pressedItem.getText().equalsIgnoreCase("Add Light")){
 			System.out.println("menu \"Add Light\" pressed");
-			// create "Add Light" Dialog ?
+			addLight();
 		}else if(pressedItem.getText().equalsIgnoreCase("Add Furniture")){
 			System.out.println("menu \"Add Furniture\" pressed");
-			// create "Add Object" Dialog ?
+			addObject();
 		}else if(pressedItem.getText().equalsIgnoreCase("About RLS")){
 			System.out.println("menu \"About RLS\" pressed");
 			java.net.URL icon_URL = Main.class.getResource("img/logo.png");
@@ -460,10 +460,12 @@ public class Main extends JFrame{
 				System.out.println("No item selected, cannot delete.");
 			}
 			
-		}else if(pressedItem.getText().equalsIgnoreCase("Add Object")){
-			System.out.println("\"Add Object\" pressed");
 		}else if(pressedItem.getText().equalsIgnoreCase("Add Light")){
 			System.out.println("\"Add Light\" pressed");
+			addLight();
+		}else if(pressedItem.getText().equalsIgnoreCase("Add Furniture")){
+			System.out.println("\"Add Furniture\" pressed");
+			addObject();
 		}
 	}
 	
@@ -493,29 +495,16 @@ public class Main extends JFrame{
 			moveDown();
 		}
 	}
-	
-	/**
-	 * set component width
-	 * @param component
-	 * @param width
-	 */
-	private static void setFixedWidth( Component component, int width ){
-		component.setSize( new Dimension( width, Short.MAX_VALUE ) );
-		Dimension preferredSize = component.getPreferredSize();
-		component.setPreferredSize( new Dimension( width, preferredSize.height ) );
-	}
 
 	// keyboard listener
 	private class MyDispatcher implements KeyEventDispatcher {
         @Override
         public boolean dispatchKeyEvent(KeyEvent e) {
             if (e.getID() == KeyEvent.KEY_PRESSED) {
-            	
-            	
             	if(e.getKeyCode() == KeyEvent.VK_UP){
             		System.out.println("key \"Up\" pressed");
+            		moveForward();
             	}
-            	
                 //System.out.println("key pressed");
             } else if (e.getID() == KeyEvent.KEY_RELEASED) {
                 //System.out.println("key released");
@@ -645,5 +634,16 @@ public class Main extends JFrame{
 		}else{
 			System.out.println("No item selected, noting Rotated.");
 		}
+	}
+	
+	// +++++++++++++++++++ ADD ENTITY METHODS +++++++++++++++++++
+	private void addLight(){
+		//TODO create add light dialog
+		addObjectToList("Light1");
+	}
+	
+	private void addObject(){
+		//TODO create add object dialog
+		addObjectToList("Object1");
 	}
 }

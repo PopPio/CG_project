@@ -502,10 +502,25 @@ public class Main extends JFrame{
         public boolean dispatchKeyEvent(KeyEvent e) {
             if (e.getID() == KeyEvent.KEY_PRESSED) {
             	if(e.getKeyCode() == KeyEvent.VK_UP){
-            		System.out.println("key \"Up\" pressed");
+            		System.out.println("key \"up arrow\" pressed");
             		moveForward();
+            	}else if(e.getKeyCode() == KeyEvent.VK_DOWN){
+            		System.out.println("key \"down arrow\" pressed");
+            		moveBackward();
+            	}else if(e.getKeyCode() == KeyEvent.VK_LEFT){
+            		System.out.println("key \"left arrow\" pressed");
+            		moveLeft();
+            	}else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+            		System.out.println("key \"right arrow\" pressed");
+            		moveRight();
+            	}else if(e.getKeyCode() == KeyEvent.VK_PAGE_UP){
+            		System.out.println("key \"page up\" pressed");
+            		moveUp();
+            	}else if(e.getKeyCode() == KeyEvent.VK_PAGE_DOWN){
+            		System.out.println("key \"page down\" pressed");
+            		moveDown();
             	}
-                //System.out.println("key pressed");
+                
             } else if (e.getID() == KeyEvent.KEY_RELEASED) {
                 //System.out.println("key released");
             } else if (e.getID() == KeyEvent.KEY_TYPED) {

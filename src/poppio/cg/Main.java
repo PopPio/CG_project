@@ -411,7 +411,6 @@ public class Main extends JFrame{
 			System.out.println("menu \"New\" pressed");
 			JTextField xField = new JTextField(5);
 		    JTextField yField = new JTextField(5);
-		    JTextField zField = new JTextField(5);
 		    JPanel newPanel = new JPanel();
 		    newPanel.add(new JLabel("width:"));
 		    newPanel.add(xField);

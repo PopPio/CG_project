@@ -48,6 +48,10 @@ public class openglRenderer implements GLEventListener {
 		gl.glLoadIdentity( );
 		glu.gluPerspective(70,(double)600/600,1,1000);
 		gl.glEnable(GL2.GL_DEPTH_TEST);
+		
+		// load obj data
+		mDisplayListID = WavefrontObjectLoader_DisplayList.loadWavefrontObjectAsDisplayList(gl,"obj/table.obj"); 
+		
 		System.out.println("init() called");
 	}
 	
@@ -62,7 +66,7 @@ public class openglRenderer implements GLEventListener {
 	
 	private void render(GLAutoDrawable gldrawable) {
 		GL2 gl = gldrawable.getGL().getGL2();
-
+		
 	    gl.glClear( GL2.GL_COLOR_BUFFER_BIT  | GL2.GL_DEPTH_BUFFER_BIT );
 	    
 	    gl.glMatrixMode( GL2.GL_MODELVIEW );
@@ -106,7 +110,9 @@ public class openglRenderer implements GLEventListener {
 	    gl.glVertex3d(-1,-1,1);*/
 	    
 	    gl.glEnd();
-	 
+	    
+	    // render obj
+	    gl.glCallList(mDisplayListID); 
 	    
 	}
 	

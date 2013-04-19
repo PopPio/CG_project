@@ -48,7 +48,6 @@ public class openglRenderer implements GLEventListener {
 		gl.glLoadIdentity( );
 		glu.gluPerspective(70,(double)600/600,1,1000);
 		gl.glEnable(GL2.GL_DEPTH_TEST);
-		mDisplayListID = WavefrontObjectLoader_DisplayList.loadWavefrontObjectAsDisplayList(gl,"obj/table.obj");
 		System.out.println("init() called");
 	}
 	
@@ -71,8 +70,7 @@ public class openglRenderer implements GLEventListener {
 	    glu.gluLookAt(3,3,1,0,0,0,0,0,1);
 	    
 	    gl.glScalef(width/referenceWidth, length/referenceLength, 1);
-	   
-	    gl.glCallList(mDisplayListID+0);
+	  
 	   
 	    // draw a triangle filling the window
 	    gl.glBegin(GL2.GL_QUADS);
@@ -108,8 +106,7 @@ public class openglRenderer implements GLEventListener {
 	    gl.glVertex3d(-1,-1,1);*/
 	    
 	    gl.glEnd();
-	    
-	   
+	 
 	    
 	}
 	

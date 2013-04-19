@@ -276,9 +276,6 @@ public class WavefrontObjectLoader_DisplayList {
         inGL.glDrawArrays(FaceFormat, 0, PolyCount * FaceMultiplier);
     }
     
-    public void getFaceFormat(){
-    	
-    }
 
     private void cleanup() {
         vData.clear();

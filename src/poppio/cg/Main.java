@@ -20,6 +20,7 @@ import javax.imageio.ImageIO;
 import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLProfile;
 import javax.media.opengl.awt.GLCanvas;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -33,6 +34,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 
 
@@ -407,7 +409,24 @@ public class Main extends JFrame{
 		JMenuItem pressedItem = (JMenuItem) evt.getSource();
 		if(pressedItem.getText().equalsIgnoreCase("New")){
 			System.out.println("menu \"New\" pressed");
-			// clear all data
+			JTextField xField = new JTextField(5);
+		    JTextField yField = new JTextField(5);
+		    JTextField zField = new JTextField(5);
+		    JPanel newPanel = new JPanel();
+		    newPanel.add(new JLabel("width:"));
+		    newPanel.add(xField);
+		    newPanel.add(Box.createHorizontalStrut(15)); // a spacer
+		    newPanel.add(new JLabel("length:"));
+		    newPanel.add(yField);
+		    
+		    int result = JOptionPane.showConfirmDialog(null, newPanel, 
+		               "Please width and length values", JOptionPane.OK_CANCEL_OPTION);
+		      if (result == JOptionPane.OK_OPTION) {
+		         System.out.println("width value: " + xField.getText());
+		         System.out.println("length value: " + yField.getText());
+		         // create room
+		      }
+		      
 		}else if(pressedItem.getText().equalsIgnoreCase("Exit")){
 			// close program
 			System.out.println("menu \"Exit\" pressed");

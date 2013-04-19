@@ -9,9 +9,13 @@ import javax.media.opengl.glu.GLU;
 public class openglRenderer implements GLEventListener {
 	private GLU glu = new GLU();
 	private float width, length;
+	private int referenceWidth, referenceLength;
 	
 	public openglRenderer () {
-		
+		this.width=0;
+		this.length = 0;
+		referenceWidth = 300;
+		referenceLength = 300;
 	}
 	
 	@Override
@@ -26,9 +30,6 @@ public class openglRenderer implements GLEventListener {
 		update();
 		setLight(gldrawable);
 		render(gldrawable);
-		try {
-			Thread.sleep(20);
-		}catch(InterruptedException e){e.printStackTrace();}
 		
 
 		
@@ -67,7 +68,7 @@ public class openglRenderer implements GLEventListener {
 	    gl.glLoadIdentity( );
 	    glu.gluLookAt(3,3,1,0,0,0,0,0,1);
 	    
-	    gl.glScalef(2, 2, 1);
+	    gl.glScalef(width/referenceWidth, length/referenceLength, 1);
 	   
 	    
 	   
@@ -134,6 +135,14 @@ public class openglRenderer implements GLEventListener {
         gl.glMaterialf(GL2.GL_FRONT, GL2.GL_SHININESS, 0.5f);
         gl.glEnable(GL2.GL_COLOR_MATERIAL);
      
+	}
+	
+	public void setWidth (float width) {
+		this.width = width;
+	}
+	
+	public void setLength (float length) {
+		this.length = length;
 	}
 	
 

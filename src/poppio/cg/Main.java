@@ -37,6 +37,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 
+import com.jogamp.opengl.util.Animator;
+
 
 public class Main extends JFrame{
 	String version = "0.01"; 
@@ -53,6 +55,8 @@ public class Main extends JFrame{
 	Color deleteButtonOverColor = new Color(0x960303);
 	Color addButtonColor = new Color(0xEF7409);
 	Color addButtonOverColor = new Color(0xD66000);
+	GLCanvas glcanvas;
+	openglRenderer renderer;
 	
 	public Main () throws IOException{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -69,10 +73,12 @@ public class Main extends JFrame{
     	GLCapabilities capabilities = new GLCapabilities(profile);
  
     	// The canvas is the widget that's drawn in the JFrame
-    	GLCanvas glcanvas = new GLCanvas(capabilities);
-    	glcanvas.addGLEventListener(new openglRenderer());
+    	glcanvas = new GLCanvas(capabilities);
+    	renderer = new openglRenderer ();
+    	glcanvas.addGLEventListener(renderer);
     	glcanvas.setSize( 600, 600 ); // set size of canvas
-		
+		Animator animator = new Animator (glcanvas);
+		animator.start();
  
         //UI
     	//MenuBar
@@ -423,8 +429,22 @@ public class Main extends JFrame{
 		      if (result == JOptionPane.OK_OPTION) {
 		         System.out.println("width value: " + xField.getText());
 		         System.out.println("length value: " + yField.getText());
+		         float x = Float.parseFloat(xField.getText());
+		         float y = Float.parseFloat(xField.getText());
+		         renderer.setWidth(x);
+		         renderer.setLength(y);
 		         // create room
 		      }
+		      
+		      
+		      
+		      
+		    
+		      
+		      
+		      
+		      
+		      
 		      
 		}else if(pressedItem.getText().equalsIgnoreCase("Exit")){
 			// close program

@@ -1,5 +1,7 @@
 package poppio.cg;
 
+import java.util.ArrayList;
+
 import javax.media.opengl.GL;
 import javax.media.opengl.GL2;
 import javax.media.opengl.GLAutoDrawable;
@@ -10,15 +12,19 @@ public class openglRenderer implements GLEventListener {
 	private GLU glu = new GLU();
 	private float width, length;
 	private int referenceWidth, referenceLength;
-	private int mDisplayListID;
+	//private int mDisplayListID;
 	WavefrontObjectLoader_VertexBufferObject objLoader;
 	private int Cx = 0,Cz = 0,Cy = 0, Cd = 3;
+	
+	private ArrayList<Furniture> furnituresList;
 	
 	public openglRenderer () {
 		this.width=0;
 		this.length = 0;
 		referenceWidth = 300;
 		referenceLength = 300;
+		
+		furnituresList = new ArrayList<Furniture>();
 	}
 	
 	@Override
@@ -189,6 +195,8 @@ public class openglRenderer implements GLEventListener {
 		 Cd = Cd-1;
 	}
 		 
-
+	 public void addFurnitureToList(Furniture newObject){
+		 this.furnituresList.add(newObject);
+	 }
 	 
 }

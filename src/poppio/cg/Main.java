@@ -4,7 +4,6 @@ package poppio.cg;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
@@ -21,7 +20,6 @@ import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLProfile;
 import javax.media.opengl.awt.GLCanvas;
 import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -55,6 +53,9 @@ public class Main extends JFrame{
 	Color deleteButtonOverColor = new Color(0x960303);
 	Color addButtonColor = new Color(0xEF7409);
 	Color addButtonOverColor = new Color(0xD66000);
+	
+	Object[] furniture_list = {"bin", "table", "chair"};  // gonna add more
+	
 	GLCanvas glcanvas;
 	openglRenderer renderer;
 	
@@ -641,7 +642,7 @@ public class Main extends JFrame{
 	private void moveForward(){
 		int index = getCurrentSelectedItemIndex();
 		if(index>=0){
-			String selected = (String)objectListModel.get(index);
+			String selected = ""+objectListModel.get(index);
 			System.out.println("Move "+ selected + " forward.");
 			// move it, move it
 		}else{
@@ -655,7 +656,7 @@ public class Main extends JFrame{
 	private void moveBackward(){
 		int index = getCurrentSelectedItemIndex();
 		if(index>=0){
-			String selected = (String)objectListModel.get(index);
+			String selected = ""+objectListModel.get(index);
 			System.out.println("Move "+ selected + " backward.");
 			// move it
 		}else{
@@ -670,7 +671,7 @@ public class Main extends JFrame{
 	private void moveLeft(){
 		int index = getCurrentSelectedItemIndex();
 		if(index>=0){
-			String selected = (String)objectListModel.get(index);
+			String selected = ""+objectListModel.get(index);
 			System.out.println("Move "+ selected + " to the left.");
 			// move it
 		}else{
@@ -684,7 +685,7 @@ public class Main extends JFrame{
 	private void moveRight(){
 		int index = getCurrentSelectedItemIndex();
 		if(index>=0){
-			String selected = (String)objectListModel.get(index);
+			String selected = ""+objectListModel.get(index);
 			System.out.println("Move "+ selected + " to the right.");
 			// move it
 		}else{
@@ -698,7 +699,7 @@ public class Main extends JFrame{
 	private void moveUp(){
 		int index = getCurrentSelectedItemIndex();
 		if(index>=0){
-			String selected = (String)objectListModel.get(index);
+			String selected = ""+objectListModel.get(index);
 			System.out.println("Move "+ selected + " upward.");
 			// move it
 		}else{
@@ -712,7 +713,7 @@ public class Main extends JFrame{
 	private void moveDown(){
 		int index = getCurrentSelectedItemIndex();
 		if(index>=0){
-			String selected = (String)objectListModel.get(index);
+			String selected = ""+objectListModel.get(index);
 			System.out.println("Move "+ selected + " downward.");
 			// move it
 		}else{
@@ -726,7 +727,7 @@ public class Main extends JFrame{
 	private void rotateClockwise(){
 		int index = getCurrentSelectedItemIndex();
 		if(index>=0){
-			String selected = (String)objectListModel.get(index);
+			String selected = ""+objectListModel.get(index);
 			System.out.println("Rotate "+ selected + " clockwise.");
 			// move it
 		}else{
@@ -740,7 +741,7 @@ public class Main extends JFrame{
 	private void rotateCounter(){
 		int index = getCurrentSelectedItemIndex();
 		if(index>=0){
-			String selected = (String)objectListModel.get(index);
+			String selected = ""+objectListModel.get(index);
 			System.out.println("Rotate "+ selected + " counterclockwise.");
 			// move it
 		}else{
@@ -756,6 +757,25 @@ public class Main extends JFrame{
 	
 	private void addObject(){
 		//TODO create add object dialog
-		addObjectToList("Object1");
+		String s = (String)JOptionPane.showInputDialog(
+                this,
+                "Select Furniture you want to add",
+                "Add Furniture",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                furniture_list,
+                "bin");
+		
+		Furniture add = null;
+		for (int i = 0; i < furniture_list.length; i++) {
+			if(s.equalsIgnoreCase((String)furniture_list[i])){
+				add = new Furniture(i+1);
+				renderer.addFurnitureToList(add); // add object to furniture list in renderer
+				break;
+			}
+		}
+		
+		System.out.println(add);
+		addObjectToList(add); // add object to display list
 	}
 }

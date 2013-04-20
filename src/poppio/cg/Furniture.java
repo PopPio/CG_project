@@ -25,6 +25,14 @@ public class Furniture {
 			// table
 			this.name = "chair";
 			this.path = "obj/chair.obj";
+		}else if(objectID == 4){
+			// table
+			this.name = "cube";
+			this.path = "obj/cube.obj";
+		}else if(objectID == 5){
+			// table
+			this.name = "sphere";
+			this.path = "obj/sphere.obj";
 		}else{ // gonna add more
 			// wtf
 		}

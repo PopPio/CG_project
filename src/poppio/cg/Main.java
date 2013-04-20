@@ -54,7 +54,7 @@ public class Main extends JFrame{
 	Color addButtonColor = new Color(0xEF7409);
 	Color addButtonOverColor = new Color(0xD66000);
 	
-	Object[] furniture_list = {"bin", "table", "chair"};  // gonna add more
+	Object[] furniture_list = {"bin", "table", "chair", "cube", "sphere"};  // gonna add more
 	
 	GLCanvas glcanvas;
 	openglRenderer renderer;
@@ -204,10 +204,10 @@ public class Main extends JFrame{
         JScrollPane objectScrollPane = new JScrollPane(objectList);
         menuPanel.add(objectScrollPane, BorderLayout.PAGE_START);
         
-        //TODO delete this test list data
-        for (int i = 0; i < 6; i++) {
+        
+       /* for (int i = 0; i < 6; i++) {
         	addObjectToList("test"+i);
-		}
+		}*/
         
         
         

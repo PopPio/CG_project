@@ -95,7 +95,7 @@ public class WavefrontObjectLoader_VertexBufferObject {
                 	System.out.println("ERROR! ZIP ENTRY IS DIRECTORY! SHOULD BE PLAIN FILE!");
                 }
             } else {
-                br = new BufferedReader(new InputStreamReader((new Object()).getClass().getResourceAsStream(inModelPath)));
+                br = new BufferedReader(new InputStreamReader(Main.class.getResourceAsStream(inModelPath)));
             }
             String  line = null;
             while((line = br.readLine()) != null) {

@@ -11,7 +11,7 @@ public class openglRenderer implements GLEventListener {
 	private float width, length;
 	private int referenceWidth, referenceLength;
 	private int mDisplayListID;
-	
+	WavefrontObjectLoader_VertexBufferObject objLoader;
 	public openglRenderer () {
 		this.width=0;
 		this.length = 0;
@@ -50,8 +50,8 @@ public class openglRenderer implements GLEventListener {
 		gl.glEnable(GL2.GL_DEPTH_TEST);
 		
 		// load obj data
-		mDisplayListID = WavefrontObjectLoader_DisplayList.loadWavefrontObjectAsDisplayList(gl,"obj/table.obj"); 
-		
+		//mDisplayListID = WavefrontObjectLoader_DisplayList.loadWavefrontObjectAsDisplayList(gl,"obj/table.obj"); 
+		objLoader = new WavefrontObjectLoader_VertexBufferObject("obj/table.obj");
 		System.out.println("init() called");
 	}
 	
@@ -74,7 +74,8 @@ public class openglRenderer implements GLEventListener {
 	    glu.gluLookAt(3,3,1,0,0,0,0,0,1);
 	    
 	    gl.glScalef(width/referenceWidth, length/referenceLength, 1);
-	  
+	    
+	    
 	   
 	    // draw a triangle filling the window
 	    gl.glBegin(GL2.GL_QUADS);
@@ -112,8 +113,8 @@ public class openglRenderer implements GLEventListener {
 	    gl.glEnd();
 	    
 	    // render obj
-	    gl.glCallList(mDisplayListID); 
-	    
+	    //gl.glCallList(mDisplayListID); 
+	    objLoader.DrawModel(gl);
 	}
 	
 	public void setLight (GLAutoDrawable gldrawable) {

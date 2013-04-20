@@ -115,9 +115,10 @@ public class openglRenderer implements GLEventListener {
 	    
 	    gl.glEnd();
 	    
-	    // render obj
-	    //gl.glCallList(mDisplayListID); 
+	    gl.glPushMatrix();
+	    gl.glScalef((float)0.1,(float)0.1 , (float)0.1);
 	    objLoader.DrawModel(gl);
+	    gl.glPopMatrix();
 	}
 	
 	public void setLight (GLAutoDrawable gldrawable) {

@@ -51,7 +51,7 @@ public class openglRenderer implements GLEventListener {
 		
 		// load obj data
 		//mDisplayListID = WavefrontObjectLoader_DisplayList.loadWavefrontObjectAsDisplayList(gl,"obj/table.obj"); 
-		objLoader = new WavefrontObjectLoader_VertexBufferObject("obj/table.obj");
+		objLoader = new WavefrontObjectLoader_VertexBufferObject("obj/bin.obj");
 		System.out.println("init() called");
 	}
 	

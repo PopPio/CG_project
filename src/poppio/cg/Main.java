@@ -592,6 +592,12 @@ public class Main extends JFrame{
             	}else if(e.getKeyCode() == KeyEvent.VK_D){
             		System.out.println("key \"D\" pressed");
             		//move camera
+            	}else if(e.getKeyCode() == KeyEvent.VK_Q){
+            		System.out.println("key \"D\" pressed");
+            		//move camera
+            	}else if(e.getKeyCode() == KeyEvent.VK_E){
+            		System.out.println("key \"D\" pressed");
+            		//move camera
             	}
                 
             } else if (e.getID() == KeyEvent.KEY_RELEASED) {

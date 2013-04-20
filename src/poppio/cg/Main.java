@@ -580,6 +580,18 @@ public class Main extends JFrame{
             		System.out.println("key \"page down\" pressed");
             		button_low.setIcon(imgBtnLowPress);
             		moveDown();
+            	}else if(e.getKeyCode() == KeyEvent.VK_W){
+            		System.out.println("key \"W\" pressed");
+            		//move camera
+            	}else if(e.getKeyCode() == KeyEvent.VK_S){
+            		System.out.println("key \"S\" pressed");
+            		//move camera
+            	}else if(e.getKeyCode() == KeyEvent.VK_A){
+            		System.out.println("key \"A\" pressed");
+            		//move camera
+            	}else if(e.getKeyCode() == KeyEvent.VK_D){
+            		System.out.println("key \"D\" pressed");
+            		//move camera
             	}
                 
             } else if (e.getID() == KeyEvent.KEY_RELEASED) {

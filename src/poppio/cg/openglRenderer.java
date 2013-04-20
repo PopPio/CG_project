@@ -116,7 +116,7 @@ public class openglRenderer implements GLEventListener {
 	    gl.glEnd();
 	    
 	    gl.glPushMatrix();
-	    gl.glScalef((float)0.1,(float)0.1 , (float)0.1);
+	    gl.glScalef((float)((width/referenceWidth)*0.1), (float)((length/referenceLength)*0.1), (float)(1*0.1));
 	    objLoader.DrawModel(gl);
 	    gl.glPopMatrix();
 	}

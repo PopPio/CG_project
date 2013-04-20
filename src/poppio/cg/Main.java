@@ -582,22 +582,28 @@ public class Main extends JFrame{
             		moveDown();
             	}else if(e.getKeyCode() == KeyEvent.VK_W){
             		System.out.println("key \"W\" pressed");
-            		renderer.InCx();
+            		renderer.InCy();
             	}else if(e.getKeyCode() == KeyEvent.VK_S){
             		System.out.println("key \"S\" pressed");
-            		renderer.DeCx();
+            		renderer.DeCy();
             	}else if(e.getKeyCode() == KeyEvent.VK_A){
             		System.out.println("key \"A\" pressed");
-            		renderer.InCy();
+            		renderer.DeCz();
             	}else if(e.getKeyCode() == KeyEvent.VK_D){
             		System.out.println("key \"D\" pressed");
-            		renderer.DeCy();
+            		renderer.DeCx();
             	}else if(e.getKeyCode() == KeyEvent.VK_Q){
             		System.out.println("key \"D\" pressed");
             		renderer.InCz();
             	}else if(e.getKeyCode() == KeyEvent.VK_E){
             		System.out.println("key \"D\" pressed");
-            		renderer.DeCz();
+            		renderer.InCx();
+            	}else if(e.getKeyCode() == KeyEvent.VK_Z){
+            		System.out.println("key \"D\" pressed");
+            		renderer.InCd();
+            	}else if(e.getKeyCode() == KeyEvent.VK_X){
+            		System.out.println("key \"D\" pressed");
+            		renderer.DeCd();
             	}
                 
             } else if (e.getID() == KeyEvent.KEY_RELEASED) {

@@ -12,7 +12,7 @@ public class openglRenderer implements GLEventListener {
 	private int referenceWidth, referenceLength;
 	private int mDisplayListID;
 	WavefrontObjectLoader_VertexBufferObject objLoader;
-	private int Cx = 3,Cz = 3,Cy = 1;
+	private int Cx = 0,Cz = 0,Cy = 0, Cd = 3;
 	
 	public openglRenderer () {
 		this.width=0;
@@ -73,7 +73,8 @@ public class openglRenderer implements GLEventListener {
 	    
 	    gl.glMatrixMode( GL2.GL_MODELVIEW );
 	    gl.glLoadIdentity( );
-	    glu.gluLookAt(Cx,Cz,Cy,0,0,0,0,0,1);
+	    glu.gluLookAt(3,Cd,1,Cx,Cz,Cy,0,0,1);
+	     
 	    
 	    gl.glScalef(width/referenceWidth, length/referenceLength, 1);
 	    
@@ -165,7 +166,11 @@ public class openglRenderer implements GLEventListener {
 	 public void InCy(){
 	  Cy = Cy+1;
 	  
-	 }
+	 }	 
+	 public void InCd(){
+	Cd = Cd+1;
+		 
+	}
 	 public void DeCx(){
 	  Cx = Cx-1;
 	 }
@@ -178,4 +183,11 @@ public class openglRenderer implements GLEventListener {
 		  Cy = Cy-1;
 		  
 	 }
+	 
+	 public void DeCd(){
+		 Cd = Cd-1;
+	}
+		 
+
+	 
 }

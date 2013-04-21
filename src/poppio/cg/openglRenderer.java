@@ -58,7 +58,7 @@ public class openglRenderer implements GLEventListener {
 		gl.glLoadIdentity( );
 		glu.gluPerspective(70,(double)600/600,1,1000);
 		gl.glEnable(GL2.GL_DEPTH_TEST);
-		gl.glEnable(GL2.GL_TEXTURE_2D);
+		//gl.glEnable(GL2.GL_TEXTURE_2D);
 		// load obj data
 		//mDisplayListID = WavefrontObjectLoader_DisplayList.loadWavefrontObjectAsDisplayList(gl,"obj/table.obj"); 
 		//objLoader = new WavefrontObjectLoader_VertexBufferObject("obj/bin.obj");
@@ -125,11 +125,13 @@ GL2 gl = gldrawable.getGL().getGL2();
 	    //gl.glScalef((float)((width/referenceWidth)*0.1), (float)((length/referenceLength)*0.1), (float)(1*0.1));
 	    
 	    //objLoader.DrawModel(gl);
-	    gl.glColor3f(1,1,1);
+	    
 	    for (Furniture tempFur : furnituresList) {
+	    	gl.glColor3f(tempFur.colorR,tempFur.colorG,tempFur.colorB);
+	    	//gl.glColor3f((float)1,(float)0.0,(float)0.0);
 	    	gl.glPushMatrix();
-	    	
-		    	gl.glScalef((float)0.3, (float)0.3, (float)0.3); // scale model down
+	    		
+		    	gl.glScalef((float)0.1, (float)0.1, (float)0.1); // scale model down
 		    	WavefrontObjectLoader_VertexBufferObject tempObj = tempFur.getObjectLoader();
 		    	gl.glTranslated(tempFur.coorX, tempFur.coorY, tempFur.coorZ); // coordianate of model
 		    	

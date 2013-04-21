@@ -68,7 +68,6 @@ public class Main extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setPreferredSize(new Dimension(820, 640));
 		initComponents();
-		System.out.println("zue");
 		
 	}
 	

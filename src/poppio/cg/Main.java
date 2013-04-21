@@ -792,13 +792,16 @@ public class Main extends JFrame{
 		
 		
 		Furniture add = null;
-		for (int i = 0; i < furniture_list.length; i++) {
-			if(s.equalsIgnoreCase((String)furniture_list[i])){
-				add = new Furniture(++idCount,++furniture_count[i],i+1);
-				renderer.addFurnitureToList(add); // add object to furniture list in renderer
-				break;
+		if(s!=null){
+			for (int i = 0; i < furniture_list.length; i++) {
+				if(s.equalsIgnoreCase((String)furniture_list[i])){
+					add = new Furniture(++idCount,++furniture_count[i],i+1);
+					renderer.addFurnitureToList(add); // add object to furniture list in renderer
+					break;
+				}
 			}
 		}
+		
 		
 		
 		System.out.println("add "+add);

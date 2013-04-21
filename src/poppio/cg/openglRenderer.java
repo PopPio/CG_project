@@ -15,6 +15,7 @@ public class openglRenderer implements GLEventListener {
 	//private int mDisplayListID;
 	WavefrontObjectLoader_VertexBufferObject objLoader;// for test only
 	private int Cx = 0,Cz = 0,Cy = 0, Cd = 3;
+	private boolean firstDraw;
 	
 	private ArrayList<Furniture> furnituresList;
 	private ArrayList<Light> lightList;
@@ -22,6 +23,7 @@ public class openglRenderer implements GLEventListener {
 	public openglRenderer () {
 		this.width=0;
 		this.length = 0;
+		firstDraw = false;
 		referenceWidth = 300;
 		referenceLength = 300;
 		
@@ -57,7 +59,7 @@ public class openglRenderer implements GLEventListener {
 		gl.glMatrixMode( GL2.GL_PROJECTION );
 		gl.glLoadIdentity( );
 		glu.gluPerspective(70,(double)600/600,1,1000);
-		gl.glEnable(GL2.GL_DEPTH_TEST);
+		//gl.glEnable(GL2.GL_DEPTH_TEST);
 		gl.glClearColor(0.88f, 0.88f, 0.88f, 0.5f);
 		//gl.glEnable(GL2.GL_TEXTURE_2D);
 		// load obj data
@@ -121,6 +123,26 @@ GL2 gl = gldrawable.getGL().getGL2();
 	    gl.glVertex3d(-1,-1,1);*/
 	    
 	    gl.glEnd();
+	    
+	    if (firstDraw){
+	    gl.glBegin(GL2.GL_LINE_STRIP);
+	    gl.glColor3f(0f, 0f,0f); //face rouge
+	    gl.glVertex3d(-1,-1,1);
+	    gl.glVertex3d(-1,-1,-1);
+	    gl.glVertex3d(1,-1,-1);
+	    gl.glVertex3d(1,-1,1);
+	    gl.glVertex3d(-1,-1,1);
+	    gl.glEnd();
+	    
+	    gl.glBegin(GL2.GL_LINE_STRIP);
+	    gl.glColor3f(0f,0f,0f);
+	    gl.glVertex3d(-1,1,1);
+	    gl.glVertex3d(-1,1,-1);
+	    gl.glVertex3d(-1,-1,-1);
+	    gl.glVertex3d(-1,-1,1);
+	    gl.glVertex3d(-1,1,1);
+	    gl.glEnd();
+	    }
 	    
 	    gl.glPopMatrix();
 	    //gl.glScalef((float)((width/referenceWidth)*0.1), (float)((length/referenceLength)*0.1), (float)(1*0.1));
@@ -201,6 +223,10 @@ GL2 gl = gldrawable.getGL().getGL2();
 	 public void DeCd(){
 		 Cd = Cd-1;
 	}
+	 
+	 public void setFirstDraw (boolean firstDraw) {
+		 this.firstDraw = firstDraw;
+	 }
 		 
 	 public void addFurnitureToList(Furniture newObject){
 		 this.furnituresList.add(newObject);

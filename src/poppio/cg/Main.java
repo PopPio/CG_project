@@ -439,6 +439,7 @@ public class Main extends JFrame{
 		         // create room
 		         renderer.setWidth(x);
 		         renderer.setLength(y);
+		         renderer.setFirstDraw(true);
 		    }
 		      
 		      

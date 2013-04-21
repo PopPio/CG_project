@@ -33,7 +33,7 @@ public class Furniture extends roomObject{
 			this.colorR = new Float(0.633);
 			this.colorG = new Float(0.423);
 			this.colorB = new Float(0.240);
-			this.coorZ = -7f;
+			this.coorZ = -10f;
 		}else if(objectID == 4){
 			// cuble
 			this.name = "cube"+furnitureCount;

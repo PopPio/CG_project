@@ -512,7 +512,7 @@ public class Main extends JFrame{
 					renderer.removeFurnitureFromList((Furniture)selected);
 				}else{
 					// Light
-					//renderer.removeLightFromList((Light)selected);
+					renderer.removeLightFromList((Light)selected);
 				}
 				
 				objectListModel.removeElement(selected);
@@ -764,11 +764,10 @@ public class Main extends JFrame{
 	
 	// +++++++++++++++++++ ADD ENTITY METHODS +++++++++++++++++++
 	private void addLight(){
-		//TODO create add light dialog
+		// create add light dialog (if we have more than 1 type of light
 		
 		Light light = new Light(++idCount,++light_count);
-		
-		//renderer.addLightToList(light);
+		renderer.addLightToList(light);
 		
 		System.out.println("add "+light);
 		addObjectToList(light); // add light to display list

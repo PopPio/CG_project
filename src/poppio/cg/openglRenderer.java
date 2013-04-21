@@ -17,6 +17,7 @@ public class openglRenderer implements GLEventListener {
 	private int Cx = 0,Cz = 0,Cy = 0, Cd = 3;
 	
 	private ArrayList<Furniture> furnituresList;
+	private ArrayList<Light> lightList;
 	
 	public openglRenderer () {
 		this.width=0;
@@ -25,6 +26,7 @@ public class openglRenderer implements GLEventListener {
 		referenceLength = 300;
 		
 		furnituresList = new ArrayList<Furniture>();
+		lightList = new ArrayList<Light>();
 	}
 	
 	@Override
@@ -125,9 +127,15 @@ GL2 gl = gldrawable.getGL().getGL2();
 	    //objLoader.DrawModel(gl);
 	    gl.glColor3f(1,1,1);
 	    for (Furniture tempFur : furnituresList) {
-	    	WavefrontObjectLoader_VertexBufferObject tempObj = tempFur.getObjectLoader();
+	    	gl.glPushMatrix();
 	    	
-	    	tempObj.DrawModel(gl);
+		    	gl.glScalef((float)0.3, (float)0.3, (float)0.3); // scale model down
+		    	WavefrontObjectLoader_VertexBufferObject tempObj = tempFur.getObjectLoader();
+		    	gl.glTranslated(tempFur.coorX, tempFur.coorY, tempFur.coorZ); // coordianate of model
+		    	
+		    	tempObj.DrawModel(gl);
+		    	
+	    	gl.glPopMatrix();
 	    	
 	    }
 
@@ -196,5 +204,11 @@ GL2 gl = gldrawable.getGL().getGL2();
 	 }
 	 public void removeFurnitureFromList(Furniture removeObject){
 		 this.furnituresList.remove(removeObject);
+	 }
+	 public void addLightToList(Light newLight){
+		 this.lightList.add(newLight);
+	 }
+	 public void removeLightFromList(Light removeObject){
+		 this.lightList.remove(removeObject);
 	 }
 }

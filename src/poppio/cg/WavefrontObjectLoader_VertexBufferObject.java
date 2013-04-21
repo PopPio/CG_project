@@ -208,17 +208,21 @@ public class WavefrontObjectLoader_VertexBufferObject {
             ve = true; 
             te = true;
             ne = true;
+            System.out.println("we have vertex, 2D texture, and normal Data");
         } else if ((tv[0] != 0) && (tt[0] != 0) && (tn[0] == 0)) {
             ConstructVT(inGL, vc, tc); //we have just vertex and texture data
             ve = true; 
             te = true;
+            System.out.println("we have just vertex and texture data");
         } else if ((tv[0] != 0) && (tt[0] == 0) && (tn[0] != 0)) {
             ConstructVN(inGL, vc, nc); //we have just vertex and normal Data
             ve = true; 
             ne = true;
+            System.out.println("we have just vertex and normal Data");
         } else if ((tv[0] != 0) && (tt[0] == 0) && (tn[0] == 0)) {
             ConstructV(inGL, vc);
             ve = true; 
+            System.out.println("we have just vertex data");
         }
     }
 

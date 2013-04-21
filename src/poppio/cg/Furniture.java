@@ -29,7 +29,7 @@ public class Furniture extends roomObject{
 		}else if(objectID == 5){
 			// table
 			this.name = "sphere"+furnitureCount;
-			this.path = "obj/sphere.obj";
+			this.path = "obj/sphere_tex.obj";
 		}else{ // gonna add more
 			// wtf
 		}

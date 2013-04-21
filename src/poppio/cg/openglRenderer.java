@@ -58,7 +58,7 @@ public class openglRenderer implements GLEventListener {
 		gl.glLoadIdentity( );
 		glu.gluPerspective(70,(double)600/600,1,1000);
 		gl.glEnable(GL2.GL_DEPTH_TEST);
-		
+		gl.glEnable(GL2.GL_TEXTURE_2D);
 		// load obj data
 		//mDisplayListID = WavefrontObjectLoader_DisplayList.loadWavefrontObjectAsDisplayList(gl,"obj/table.obj"); 
 		//objLoader = new WavefrontObjectLoader_VertexBufferObject("obj/bin.obj");

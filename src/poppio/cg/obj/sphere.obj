@@ -775,7 +775,7 @@ vn -0.000000 -1.000000 -0.000000
 vn -0.000000 1.000000 -0.000000
 s 1
 g pSphere1
-usemtl initialShadingGroup
+usemtl lambert2SG
 f 1/1/1 2/2/2 17/18/3
 f 17/18/3 2/2/2 18/19/4
 f 2/2/2 3/3/5 18/19/4

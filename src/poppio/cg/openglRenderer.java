@@ -58,6 +58,7 @@ public class openglRenderer implements GLEventListener {
 		gl.glLoadIdentity( );
 		glu.gluPerspective(70,(double)600/600,1,1000);
 		gl.glEnable(GL2.GL_DEPTH_TEST);
+		gl.glClearColor(0.88f, 0.88f, 0.88f, 0.5f);
 		//gl.glEnable(GL2.GL_TEXTURE_2D);
 		// load obj data
 		//mDisplayListID = WavefrontObjectLoader_DisplayList.loadWavefrontObjectAsDisplayList(gl,"obj/table.obj"); 
@@ -89,29 +90,29 @@ GL2 gl = gldrawable.getGL().getGL2();
 	    // draw a triangle filling the window
 	    gl.glBegin(GL2.GL_QUADS);
 	    
-	    gl.glColor3f(0,0,1); //face rouge
+	    gl.glColor3f(0.88f,0.88f,0.88f); //face rouge
 	    gl.glVertex3d(-1,-1,1);
 	    gl.glVertex3d(-1,-1,-1);
 	    gl.glVertex3d(1,-1,-1);
 	    gl.glVertex3d(1,-1,1);
 	    
-	    gl.glColor3f(1,0,1);
+	    gl.glColor3f(0.88f,0.88f,0.88f);
 	    gl.glVertex3d(-1,1,1);
 	    gl.glVertex3d(-1,1,-1);
 	    gl.glVertex3d(-1,-1,-1);
 	    gl.glVertex3d(-1,-1,1);
 	 
-	    gl.glColor3f(0,1,1); //face cyan
+	    gl.glColor3f(0.63f,0.63f,0.63f); //face cyan
 	    gl.glVertex3d(1,1,-1);
 	    gl.glVertex3d(1,-1,-1);
 	    gl.glVertex3d(-1,-1,-1);
 	    gl.glVertex3d(-1,1,-1);
 	    
-	    gl.glColor3f(0,1,0); //face cyan
-	    gl.glVertex3d(0.25,0.25,0);
-	    gl.glVertex3d(0.25,0.75,0);
-	    gl.glVertex3d(0.75,0.75,0);
-	    gl.glVertex3d(0.75,0.25,0);
+//	    gl.glColor3f(0,1,0); //face cyan
+//	    gl.glVertex3d(0.25,0.25,0);
+//	    gl.glVertex3d(0.25,0.75,0);
+//	    gl.glVertex3d(0.75,0.75,0);
+//	    gl.glVertex3d(0.75,0.25,0);
 	    
 	    /* gl.glColor3f(1,1,0); //face magenta
 	    gl.glVertex3d(1,-1,1);

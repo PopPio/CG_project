@@ -2,10 +2,12 @@ package poppio.cg;
 // for store data of furnitures
 public class Furniture {
 	float coorX, coorY, coorZ;
-	String name;
-	String path;
+	private String name;
+	private String path;
 	
 	final double CHANGE_AMOUNT = 1;
+	
+	private WavefrontObjectLoader_VertexBufferObject obj;
 	
 	public Furniture (int objectID) {
 		// set default coordinate
@@ -36,12 +38,16 @@ public class Furniture {
 		}else{ // gonna add more
 			// wtf
 		}
-		
+		this.obj = new WavefrontObjectLoader_VertexBufferObject(path);
 	}
 	
 	// use by objectloader to load .obj file
-	public String getPath(){
+	/*public String getPath(){
 		return this.path;
+	}*/
+	
+	public WavefrontObjectLoader_VertexBufferObject getObjectLoader() {
+		return this.obj;
 	}
 	
 	public String toString(){

@@ -427,24 +427,15 @@ public class Main extends JFrame{
 		    
 		    int result = JOptionPane.showConfirmDialog(null, newPanel, 
 		               "Please width and length values", JOptionPane.OK_CANCEL_OPTION);
-		      if (result == JOptionPane.OK_OPTION) {
+		    if (result == JOptionPane.OK_OPTION) {
 		         System.out.println("width value: " + xField.getText());
 		         System.out.println("length value: " + yField.getText());
 		         float x = Float.parseFloat(xField.getText());
 		         float y = Float.parseFloat(xField.getText());
+		         // create room
 		         renderer.setWidth(x);
 		         renderer.setLength(y);
-		         // create room
-		      }
-		      
-		      
-		      
-		      
-		    
-		      
-		      
-		      
-		      
+		    }
 		      
 		      
 		}else if(pressedItem.getText().equalsIgnoreCase("Exit")){
@@ -756,7 +747,7 @@ public class Main extends JFrame{
 	}
 	
 	private void addObject(){
-		//TODO create add object dialog
+		// create object dialog
 		String s = (String)JOptionPane.showInputDialog(
                 this,
                 "Select Furniture you want to add",
@@ -774,6 +765,7 @@ public class Main extends JFrame{
 				break;
 			}
 		}
+		
 		
 		System.out.println(add);
 		addObjectToList(add); // add object to display list

@@ -13,7 +13,7 @@ public class openglRenderer implements GLEventListener {
 	private float width, length;
 	private int referenceWidth, referenceLength;
 	//private int mDisplayListID;
-	WavefrontObjectLoader_VertexBufferObject objLoader;
+	WavefrontObjectLoader_VertexBufferObject objLoader;// for test only
 	private int Cx = 0,Cz = 0,Cy = 0, Cd = 3;
 	
 	private ArrayList<Furniture> furnituresList;
@@ -59,7 +59,7 @@ public class openglRenderer implements GLEventListener {
 		
 		// load obj data
 		//mDisplayListID = WavefrontObjectLoader_DisplayList.loadWavefrontObjectAsDisplayList(gl,"obj/table.obj"); 
-		objLoader = new WavefrontObjectLoader_VertexBufferObject("obj/bin.obj");
+		//objLoader = new WavefrontObjectLoader_VertexBufferObject("obj/bin.obj");
 		System.out.println("init() called");
 	}
 	
@@ -85,8 +85,8 @@ public class openglRenderer implements GLEventListener {
 	    gl.glScalef(width/referenceWidth, length/referenceLength, 1);
 	    
 	    
-	   
-	    // draw a triangle filling the window
+	    
+	    // ----- create room -----
 	    gl.glBegin(GL2.GL_QUADS);
 	    
 	    gl.glColor3f(0,0,1); //face rouge
@@ -120,11 +120,25 @@ public class openglRenderer implements GLEventListener {
 	    gl.glVertex3d(-1,-1,1);*/
 	    
 	    gl.glEnd();
+	    // ----- end create room -----
 	    
-	    gl.glPushMatrix();
-	    gl.glScalef((float)((width/referenceWidth)*0.1), (float)((length/referenceLength)*0.1), (float)(1*0.1));
-	    objLoader.DrawModel(gl);
-	    gl.glPopMatrix();
+	    
+	    // create bin
+//	    gl.glPushMatrix();
+//	    gl.glScalef((float)((width/referenceWidth)*0.1), (float)((length/referenceLength)*0.1), (float)(1*0.1));
+//	    objLoader.DrawModel(gl);
+//	    gl.glPopMatrix();
+	    
+	    // ----- draw objects in list -----
+	    for (Furniture tempFur : furnituresList) {
+	    	WavefrontObjectLoader_VertexBufferObject tempObj = tempFur.getObjectLoader();
+	    	gl.glPushMatrix();
+	    	// TODO perform scale, translate, bla bla ...
+	    	
+	    	tempObj.DrawModel(gl);
+	    	gl.glPopMatrix();
+	    }
+	    
 	}
 	
 	public void setLight (GLAutoDrawable gldrawable) {

@@ -73,7 +73,7 @@ public class openglRenderer implements GLEventListener {
 	}
 	
 	private void render(GLAutoDrawable gldrawable) {
-		GL2 gl = gldrawable.getGL().getGL2();
+GL2 gl = gldrawable.getGL().getGL2();
 		
 	    gl.glClear( GL2.GL_COLOR_BUFFER_BIT  | GL2.GL_DEPTH_BUFFER_BIT );
 	    
@@ -81,12 +81,12 @@ public class openglRenderer implements GLEventListener {
 	    gl.glLoadIdentity( );
 	    glu.gluLookAt(3,Cd,1,Cx,Cz,Cy,0,0,1);
 	     
-	    
+	    gl.glPushMatrix();
 	    gl.glScalef(width/referenceWidth, length/referenceLength, 1);
 	    
 	    
-	    
-	    // ----- create room -----
+	   
+	    // draw a triangle filling the window
 	    gl.glBegin(GL2.GL_QUADS);
 	    
 	    gl.glColor3f(0,0,1); //face rouge
@@ -112,32 +112,26 @@ public class openglRenderer implements GLEventListener {
 	    gl.glVertex3d(0.25,0.75,0);
 	    gl.glVertex3d(0.75,0.75,0);
 	    gl.glVertex3d(0.75,0.25,0);
-	 
-	   /* gl.glColor3f(1,1,0); //face magenta
+	    
+	    /* gl.glColor3f(1,1,0); //face magenta
 	    gl.glVertex3d(1,-1,1);
 	    gl.glVertex3d(1,1,1);
 	    gl.glVertex3d(-1,1,1);
 	    gl.glVertex3d(-1,-1,1);*/
 	    
 	    gl.glEnd();
-	    // ----- end create room -----
 	    
+	    gl.glPopMatrix();
+	    //gl.glScalef((float)((width/referenceWidth)*0.1), (float)((length/referenceLength)*0.1), (float)(1*0.1));
 	    
-	    // create bin
-//	    gl.glPushMatrix();
-//	    gl.glScalef((float)((width/referenceWidth)*0.1), (float)((length/referenceLength)*0.1), (float)(1*0.1));
-//	    objLoader.DrawModel(gl);
-//	    gl.glPopMatrix();
-	    
-	    // ----- draw objects in list -----
+	    //objLoader.DrawModel(gl);
 	    for (Furniture tempFur : furnituresList) {
 	    	WavefrontObjectLoader_VertexBufferObject tempObj = tempFur.getObjectLoader();
-	    	gl.glPushMatrix();
-	    	// TODO perform scale, translate, bla bla ...
 	    	
 	    	tempObj.DrawModel(gl);
-	    	gl.glPopMatrix();
+	    	
 	    }
+
 	    
 	}
 	

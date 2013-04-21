@@ -36,13 +36,14 @@ import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 
 import com.jogamp.opengl.util.Animator;
+import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
 
 
 public class Main extends JFrame{
 	String version = "0.01"; 
 	
-	JList objectList;
-	DefaultListModel objectListModel;
+	JList<roomObject> objectList;
+	DefaultListModel<roomObject> objectListModel;
 	
 	ImageButton button_up, button_down, button_left, button_right, button_low, button_high;
 	
@@ -56,6 +57,8 @@ public class Main extends JFrame{
 	
 	Object[] furniture_list = {"bin", "table", "chair", "cube", "sphere"};  // gonna add more
 	int[] furniture_count = {0,0,0,0,0};
+	int light_count = 0;
+	
 	GLCanvas glcanvas;
 	openglRenderer renderer;
 	
@@ -198,8 +201,8 @@ public class Main extends JFrame{
        
 
         
-        objectListModel = new DefaultListModel();
-        objectList = new JList(objectListModel);
+        objectListModel = new DefaultListModel<roomObject>();
+        objectList = new JList<roomObject>(objectListModel);
         objectList.setVisibleRowCount(10);
         objectList.setFocusable(false);
         
@@ -406,7 +409,7 @@ public class Main extends JFrame{
 	 * used for adding object to object list
 	 * @param obj
 	 */
-	private void addObjectToList(Object obj){
+	private void addObjectToList(roomObject obj){
 		objectListModel.addElement(obj);
 	}
 	
@@ -503,9 +506,15 @@ public class Main extends JFrame{
 			//System.out.println("button \"Delete\" pressed");
 			int index = getCurrentSelectedItemIndex();
 			if(index>=0){
+				Object selected = (Object)objectListModel.get(index);
+				if(selected instanceof Furniture){
+					// Furniture
+					renderer.removeFurnitureFromList((Furniture)selected);
+				}else{
+					// Light
+					//renderer.removeLightFromList((Light)selected);
+				}
 				
-				Furniture selected = (Furniture)objectListModel.get(index);
-				renderer.removeFurnitureFromList(selected);
 				objectListModel.removeElement(selected);
 				System.out.println("Delete "+selected);
 			}else{
@@ -590,16 +599,16 @@ public class Main extends JFrame{
             		System.out.println("key \"D\" pressed");
             		renderer.DeCx();
             	}else if(e.getKeyCode() == KeyEvent.VK_Q){
-            		System.out.println("key \"D\" pressed");
+            		System.out.println("key \"Q\" pressed");
             		renderer.InCz();
             	}else if(e.getKeyCode() == KeyEvent.VK_E){
-            		System.out.println("key \"D\" pressed");
+            		System.out.println("key \"E\" pressed");
             		renderer.InCx();
             	}else if(e.getKeyCode() == KeyEvent.VK_Z){
-            		System.out.println("key \"D\" pressed");
+            		System.out.println("key \"Z\" pressed");
             		renderer.InCd();
             	}else if(e.getKeyCode() == KeyEvent.VK_X){
-            		System.out.println("key \"D\" pressed");
+            		System.out.println("key \"X\" pressed");
             		renderer.DeCd();
             	}
                 
@@ -638,9 +647,10 @@ public class Main extends JFrame{
 	private void moveForward(){
 		int index = getCurrentSelectedItemIndex();
 		if(index>=0){
-			String selected = ""+objectListModel.get(index);
+			roomObject selectedEntity = (roomObject)objectListModel.get(index);
+			String selected = ""+selectedEntity;
+			selectedEntity.deCoorY();
 			System.out.println("Move "+ selected + " forward.");
-			// move it, move it
 		}else{
 			System.out.println("No item selected, noting moved.");
 		}
@@ -652,9 +662,10 @@ public class Main extends JFrame{
 	private void moveBackward(){
 		int index = getCurrentSelectedItemIndex();
 		if(index>=0){
-			String selected = ""+objectListModel.get(index);
+			roomObject selectedEntity = (roomObject)objectListModel.get(index);
+			String selected = ""+selectedEntity;
+			selectedEntity.inCoorY();
 			System.out.println("Move "+ selected + " backward.");
-			// move it
 		}else{
 			System.out.println("No item selected, noting moved.");
 		}
@@ -667,9 +678,10 @@ public class Main extends JFrame{
 	private void moveLeft(){
 		int index = getCurrentSelectedItemIndex();
 		if(index>=0){
-			String selected = ""+objectListModel.get(index);
+			roomObject selectedEntity = (roomObject)objectListModel.get(index);
+			String selected = ""+selectedEntity;
+			selectedEntity.inCoorX();
 			System.out.println("Move "+ selected + " to the left.");
-			// move it
 		}else{
 			System.out.println("No item selected, noting moved.");
 		}
@@ -681,9 +693,10 @@ public class Main extends JFrame{
 	private void moveRight(){
 		int index = getCurrentSelectedItemIndex();
 		if(index>=0){
-			String selected = ""+objectListModel.get(index);
+			roomObject selectedEntity = (roomObject)objectListModel.get(index);
+			String selected = ""+selectedEntity;
+			selectedEntity.deCoorX();
 			System.out.println("Move "+ selected + " to the right.");
-			// move it
 		}else{
 			System.out.println("No item selected, noting moved.");
 		}
@@ -695,9 +708,10 @@ public class Main extends JFrame{
 	private void moveUp(){
 		int index = getCurrentSelectedItemIndex();
 		if(index>=0){
-			String selected = ""+objectListModel.get(index);
+			roomObject selectedEntity = (roomObject)objectListModel.get(index);
+			String selected = ""+selectedEntity;
+			selectedEntity.inCoorZ();
 			System.out.println("Move "+ selected + " upward.");
-			// move it
 		}else{
 			System.out.println("No item selected, noting moved.");
 		}
@@ -709,9 +723,10 @@ public class Main extends JFrame{
 	private void moveDown(){
 		int index = getCurrentSelectedItemIndex();
 		if(index>=0){
-			String selected = ""+objectListModel.get(index);
+			roomObject selectedEntity = (roomObject)objectListModel.get(index);
+			String selected = ""+selectedEntity;
+			selectedEntity.deCoorZ();
 			System.out.println("Move "+ selected + " downward.");
-			// move it
 		}else{
 			System.out.println("No item selected, noting moved.");
 		}
@@ -723,7 +738,8 @@ public class Main extends JFrame{
 	private void rotateClockwise(){
 		int index = getCurrentSelectedItemIndex();
 		if(index>=0){
-			String selected = ""+objectListModel.get(index);
+			roomObject selectedEntity = (roomObject)objectListModel.get(index);
+			String selected = ""+selectedEntity;
 			System.out.println("Rotate "+ selected + " clockwise.");
 			// move it
 		}else{
@@ -737,7 +753,8 @@ public class Main extends JFrame{
 	private void rotateCounter(){
 		int index = getCurrentSelectedItemIndex();
 		if(index>=0){
-			String selected = ""+objectListModel.get(index);
+			roomObject selectedEntity = (roomObject)objectListModel.get(index);
+			String selected = ""+selectedEntity;
 			System.out.println("Rotate "+ selected + " counterclockwise.");
 			// move it
 		}else{
@@ -748,7 +765,13 @@ public class Main extends JFrame{
 	// +++++++++++++++++++ ADD ENTITY METHODS +++++++++++++++++++
 	private void addLight(){
 		//TODO create add light dialog
-		addObjectToList("Light1");
+		
+		Light light = new Light(++idCount,++light_count);
+		
+		//renderer.addLightToList(light);
+		
+		System.out.println("add "+light);
+		addObjectToList(light); // add light to display list
 	}
 	
 	private void addObject(){
@@ -766,7 +789,7 @@ public class Main extends JFrame{
 		Furniture add = null;
 		for (int i = 0; i < furniture_list.length; i++) {
 			if(s.equalsIgnoreCase((String)furniture_list[i])){
-				add = new Furniture(i+1,++idCount,++furniture_count[i+1]);
+				add = new Furniture(++idCount,++furniture_count[i],i+1);
 				renderer.addFurnitureToList(add); // add object to furniture list in renderer
 				break;
 			}

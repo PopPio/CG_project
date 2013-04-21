@@ -1,21 +1,14 @@
 package poppio.cg;
 // for store data of furnitures
-public class Furniture {
-	float coorX, coorY, coorZ;
-	private String name;
-	private String path;
-	private int id;
-	final double CHANGE_AMOUNT = 1;
+public class Furniture extends roomObject{
 	
+	private String path;
 	private WavefrontObjectLoader_VertexBufferObject obj;
 	
-	public Furniture (int objectID,int id,int furnitureCount) {
-		// set default coordinate
-		coorX = 0;
-		coorY = 0;
-		coorZ = 0;
+	
+	public Furniture (int id, int furnitureCount, int objectID) {
+		super(id); 
 		
-		this.id = id; // set id (for easy list management)
 		
 		if(objectID == 1){
 			// bin
@@ -43,39 +36,9 @@ public class Furniture {
 		this.obj = new WavefrontObjectLoader_VertexBufferObject(path);
 	}
 	
-	// use by objectloader to load .obj file
-	/*public String getPath(){
-		return this.path;
-	}*/
-	
 	public WavefrontObjectLoader_VertexBufferObject getObjectLoader() {
 		return this.obj;
 	}
 	
-	public String toString(){
-		return name;
-	}
 	
-	public int getID(){
-		return this.id;
-	}
-	
-	public void inCoorX(){
-		this.coorX += CHANGE_AMOUNT;
-	}
-	public void deCoorX(){
-		this.coorX -= CHANGE_AMOUNT;
-	}
-	public void inCoorY(){
-		this.coorY += CHANGE_AMOUNT;
-	}
-	public void deCoorY(){
-		this.coorY -= CHANGE_AMOUNT;
-	}
-	public void inCoorZ(){
-		this.coorZ += CHANGE_AMOUNT;
-	}
-	public void deCoorZ(){
-		this.coorZ -= CHANGE_AMOUNT;
-	}
 }

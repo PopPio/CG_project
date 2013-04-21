@@ -123,6 +123,7 @@ GL2 gl = gldrawable.getGL().getGL2();
 	    //gl.glScalef((float)((width/referenceWidth)*0.1), (float)((length/referenceLength)*0.1), (float)(1*0.1));
 	    
 	    //objLoader.DrawModel(gl);
+	    gl.glColor3f(1,1,1);
 	    for (Furniture tempFur : furnituresList) {
 	    	WavefrontObjectLoader_VertexBufferObject tempObj = tempFur.getObjectLoader();
 	    	
@@ -135,27 +136,16 @@ GL2 gl = gldrawable.getGL().getGL2();
 	
 	public void setLight (GLAutoDrawable gldrawable) {
 		GL2 gl = gldrawable.getGL().getGL2();
-		 // Prepare light parameters.
-        float SHINE_ALL_DIRECTIONS = 5;
-        float[] lightPos = {3, 3, 40, SHINE_ALL_DIRECTIONS};
-        float[] lightColorAmbient = {0.2f, 0.2f, 0.2f, 1f};
-        float[] lightColorSpecular = {0.8f, 0.8f, 0.8f, 1f};
+		float[] lightPos = { 2000,3000,2000,1 };        // light position
+		float[] noAmbient = { 0.2f, 0.2f, 0.2f, 1f };     // low ambient light
+		float[] diffuse = { 1f, 1f, 1f, 1f };        // full diffuse colour
 
-        // Set light parameters.
-        gl.glLightfv(GL2.GL_LIGHT1, GL2.GL_POSITION, lightPos, 0);
-        gl.glLightfv(GL2.GL_LIGHT1, GL2.GL_AMBIENT, lightColorAmbient, 0);
-        gl.glLightfv(GL2.GL_LIGHT1, GL2.GL_SPECULAR, lightColorSpecular, 0);
-
-        // Enable lighting in GL.
-        gl.glEnable(GL2.GL_LIGHT1);
-        gl.glEnable(GL2.GL_LIGHTING);
-
-     // Set material properties.
-        float[] rgba = {0.3f, 0.5f, 1f};
-        gl.glMaterialfv(GL2.GL_FRONT, GL2.GL_AMBIENT, rgba, 0);
-        gl.glMaterialfv(GL2.GL_FRONT, GL2.GL_SPECULAR, rgba, 0);
-        gl.glMaterialf(GL2.GL_FRONT, GL2.GL_SHININESS, 0.5f);
-        gl.glEnable(GL2.GL_COLOR_MATERIAL);
+		gl.glEnable(GL2.GL_LIGHTING);
+		gl.glEnable(GL2.GL_LIGHT0);
+		gl.glEnable(GL2.GL_COLOR_MATERIAL);
+		gl.glLightfv(GL2.GL_LIGHT0, GL2.GL_AMBIENT, noAmbient, 0);
+		gl.glLightfv(GL2.GL_LIGHT0, GL2.GL_DIFFUSE, diffuse, 0);
+		gl.glLightfv(GL2.GL_LIGHT0, GL2.GL_POSITION,lightPos, 0);
         
      
 	}

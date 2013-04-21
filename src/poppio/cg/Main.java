@@ -169,7 +169,7 @@ public class Main extends JFrame{
                 KeyEvent.VK_L, ActionEvent.CTRL_MASK));
         menuItem_add_light.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){menuItemsPerformed(e);}});   
-        menu_object.add(menuItem_add_light);
+        //menu_object.add(menuItem_add_light);
         
         JMenuItem menuItem_add_furniture = new JMenuItem("Add Furniture");
         menuItem_add_furniture.setMnemonic(KeyEvent.VK_U);
@@ -364,7 +364,7 @@ public class Main extends JFrame{
              public void actionPerformed(ActionEvent e){simplebuttonPerformed(e);}});
      	
      	addButtonPanel.add(button_add_object,BorderLayout.LINE_START);
-     	addButtonPanel.add(button_add_light,BorderLayout.LINE_END);
+     	//addButtonPanel.add(button_add_light,BorderLayout.LINE_END);
         
         menuPanel.add(bottomPanel, BorderLayout.PAGE_END);
         bottomPanel.setLayout(new BorderLayout());

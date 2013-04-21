@@ -5,6 +5,7 @@ public class roomObject {
 	protected double coorX, coorY, coorZ;
 	final double CHANGE_AMOUNT = 1; //amount to change in coordinate when press move key
 	protected String name;
+	float rotateX, rotateY, rotateZ;
 	
 	public roomObject(int id){
 		this.id = id; // set id
@@ -13,6 +14,10 @@ public class roomObject {
 		coorX = 0;
 		coorY = 0;
 		coorZ = 0;
+		
+		rotateX = 0;
+		rotateY = 0;
+		rotateZ = 0;
 	}
 	
 	public int getID(){

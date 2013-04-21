@@ -740,7 +740,7 @@ public class Main extends JFrame{
 			roomObject selectedEntity = (roomObject)objectListModel.get(index);
 			String selected = ""+selectedEntity;
 			System.out.println("Rotate "+ selected + " clockwise.");
-			// move it
+			selectedEntity.rotateZ += 1;
 		}else{
 			System.out.println("No item selected, noting Rotated.");
 		}
@@ -755,7 +755,7 @@ public class Main extends JFrame{
 			roomObject selectedEntity = (roomObject)objectListModel.get(index);
 			String selected = ""+selectedEntity;
 			System.out.println("Rotate "+ selected + " counterclockwise.");
-			// move it
+			selectedEntity.rotateZ -= 1;
 		}else{
 			System.out.println("No item selected, noting Rotated.");
 		}

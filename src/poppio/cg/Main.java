@@ -433,7 +433,7 @@ public class Main extends JFrame{
 		         System.out.println("width value: " + xField.getText());
 		         System.out.println("length value: " + yField.getText());
 		         float x = Float.parseFloat(xField.getText());
-		         float y = Float.parseFloat(xField.getText());
+		         float y = Float.parseFloat(yField.getText());
 		         // create room
 		         renderer.setWidth(x);
 		         renderer.setLength(y);

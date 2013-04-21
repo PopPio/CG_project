@@ -82,10 +82,8 @@ GL2 gl = gldrawable.getGL().getGL2();
 	    glu.gluLookAt(3,Cd,1,Cx,Cz,Cy,0,0,1);
 	     
 	    gl.glPushMatrix();
+	    //
 	    gl.glScalef(width/referenceWidth, length/referenceLength, 1);
-	    
-	    
-	   
 	    // draw a triangle filling the window
 	    gl.glBegin(GL2.GL_QUADS);
 	    

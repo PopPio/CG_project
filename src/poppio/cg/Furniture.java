@@ -5,11 +5,13 @@ public class Furniture extends roomObject{
 	private String path;
 	private WavefrontObjectLoader_VertexBufferObject obj;
 	float colorR,colorG,colorB;
+	float rotateX, rotateY, rotateZ;
 	
 	public Furniture (int id, int furnitureCount, int objectID) {
 		super(id); 
-		
-		
+		rotateX = 0;
+		rotateY = 0;
+		rotateZ = 0;
 		if(objectID == 1){
 			// bin
 			this.name = "bin"+furnitureCount;

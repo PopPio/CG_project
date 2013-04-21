@@ -148,7 +148,7 @@ GL2 gl = gldrawable.getGL().getGL2();
 		GL2 gl = gldrawable.getGL().getGL2();
 		float[] lightPos = { 2000,3000,2000,1 };        // light position
 		float[] noAmbient = { 0.2f, 0.2f, 0.2f, 1f };     // low ambient light
-		float[] diffuse = { 1f, 1f, 1f, 0.5f };        // full diffuse colour
+		float[] diffuse = { 0.2f, 0.2f, 0.2f, 0.5f };        // full diffuse colour
 
 		gl.glEnable(GL2.GL_LIGHTING);
 		gl.glEnable(GL2.GL_LIGHT0);

@@ -609,6 +609,12 @@ public class Main extends JFrame{
             	}else if(e.getKeyCode() == KeyEvent.VK_X){
             		System.out.println("key \"X\" pressed");
             		renderer.DeCd();
+            	}else if(e.getKeyCode() == KeyEvent.VK_COMMA){
+            		System.out.println("key \"COMMA\" pressed");
+            		rotateClockwise();
+            	}else if(e.getKeyCode() == KeyEvent.VK_PERIOD){
+            		System.out.println("key \"PERIOD\" pressed");
+            		rotateCounter();
             	}
                 
             } else if (e.getID() == KeyEvent.KEY_RELEASED) {
@@ -740,7 +746,7 @@ public class Main extends JFrame{
 			roomObject selectedEntity = (roomObject)objectListModel.get(index);
 			String selected = ""+selectedEntity;
 			System.out.println("Rotate "+ selected + " clockwise.");
-			selectedEntity.rotateZ += 1;
+			selectedEntity.rotateZ += 5;
 		}else{
 			System.out.println("No item selected, noting Rotated.");
 		}
@@ -755,7 +761,7 @@ public class Main extends JFrame{
 			roomObject selectedEntity = (roomObject)objectListModel.get(index);
 			String selected = ""+selectedEntity;
 			System.out.println("Rotate "+ selected + " counterclockwise.");
-			selectedEntity.rotateZ -= 1;
+			selectedEntity.rotateZ -= 5;
 		}else{
 			System.out.println("No item selected, noting Rotated.");
 		}

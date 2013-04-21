@@ -17,7 +17,7 @@ public class Furniture extends roomObject{
 			this.colorR = new Float(0.5);
 			this.colorG = new Float(0.445);
 			this.colorB = new Float(0.447);
-			System.out.println("color="+colorR);
+			this.coorZ = -7f;
 		}else if(objectID == 2){
 			// table
 			this.name = "table"+furnitureCount;
@@ -25,6 +25,7 @@ public class Furniture extends roomObject{
 			this.colorR = new Float(0.633);
 			this.colorG = new Float(0.423);
 			this.colorB = new Float(0.240);
+			this.coorZ = -7f;
 		}else if(objectID == 3){
 			// table
 			this.name = "chair"+furnitureCount;
@@ -32,6 +33,7 @@ public class Furniture extends roomObject{
 			this.colorR = new Float(0.633);
 			this.colorG = new Float(0.423);
 			this.colorB = new Float(0.240);
+			this.coorZ = -7f;
 		}else if(objectID == 4){
 			// cuble
 			this.name = "cube"+furnitureCount;
@@ -39,6 +41,7 @@ public class Furniture extends roomObject{
 			this.colorR = new Float(1);
 			this.colorG = new Float(0);
 			this.colorB = new Float(0.750);
+			this.coorZ = -8.5f;
 		}else if(objectID == 5){
 			// table
 			this.name = "sphere"+furnitureCount;
@@ -46,6 +49,7 @@ public class Furniture extends roomObject{
 			this.colorR = new Float(0);
 			this.colorG = new Float(0.667);
 			this.colorB = new Float(1);
+			this.coorZ = -9.2f;
 		}else if(objectID == 6){
 			// table
 			this.name = "urn"+furnitureCount;
@@ -53,6 +57,7 @@ public class Furniture extends roomObject{
 			this.colorR = new Float(0.962);
 			this.colorG = new Float(0.860);
 			this.colorB = new Float(0.317);
+			this.coorZ = -8.5f;
 		}else if(objectID == 7){
 			// table
 			this.name = "shelf"+furnitureCount;
@@ -60,6 +65,7 @@ public class Furniture extends roomObject{
 			this.colorR = new Float(0.633);
 			this.colorG = new Float(0.423);
 			this.colorB = new Float(0.240);
+			this.coorZ = -8.7f;
 		}else if(objectID == 8){
 			// table
 			this.name = "wardrobe"+furnitureCount;
@@ -67,6 +73,7 @@ public class Furniture extends roomObject{
 			this.colorR = new Float(0.633);
 			this.colorG = new Float(0.423);
 			this.colorB = new Float(0.240);
+			this.coorZ = -3.4f;
 		}else{ // gonna add more
 			// wtf
 		}

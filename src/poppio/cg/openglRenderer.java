@@ -59,7 +59,7 @@ public class openglRenderer implements GLEventListener {
 		gl.glMatrixMode( GL2.GL_PROJECTION );
 		gl.glLoadIdentity( );
 		glu.gluPerspective(70,(double)600/600,1,1000);
-		//gl.glEnable(GL2.GL_DEPTH_TEST);
+		gl.glEnable(GL2.GL_DEPTH_TEST);
 		gl.glClearColor(0.88f, 0.88f, 0.88f, 0.5f);
 		//gl.glEnable(GL2.GL_TEXTURE_2D);
 		// load obj data
@@ -74,11 +74,11 @@ public class openglRenderer implements GLEventListener {
 	}
 	
 	private void update() {
-	
+		
 	}
 	
 	private void render(GLAutoDrawable gldrawable) {
-GL2 gl = gldrawable.getGL().getGL2();
+		GL2 gl = gldrawable.getGL().getGL2();
 		
 	    gl.glClear( GL2.GL_COLOR_BUFFER_BIT  | GL2.GL_DEPTH_BUFFER_BIT );
 	    
@@ -127,20 +127,20 @@ GL2 gl = gldrawable.getGL().getGL2();
 	    if (firstDraw){
 	    gl.glBegin(GL2.GL_LINE_STRIP);
 	    gl.glColor3f(0f, 0f,0f); //face rouge
-	    gl.glVertex3d(-1,-1,1);
-	    gl.glVertex3d(-1,-1,-1);
-	    gl.glVertex3d(1,-1,-1);
-	    gl.glVertex3d(1,-1,1);
-	    gl.glVertex3d(-1,-1,1);
+	    gl.glVertex3d(-0.99,-0.99,0.99);
+	    gl.glVertex3d(-0.99,-0.99,-0.99);
+	    gl.glVertex3d(0.99,-0.99,-0.99);
+	    gl.glVertex3d(0.99,-0.99,0.99);
+	    gl.glVertex3d(-0.99,-0.99,0.99);
 	    gl.glEnd();
 	    
 	    gl.glBegin(GL2.GL_LINE_STRIP);
 	    gl.glColor3f(0f,0f,0f);
-	    gl.glVertex3d(-1,1,1);
-	    gl.glVertex3d(-1,1,-1);
-	    gl.glVertex3d(-1,-1,-1);
-	    gl.glVertex3d(-1,-1,1);
-	    gl.glVertex3d(-1,1,1);
+	    gl.glVertex3d(-0.99,0.99,0.99);
+	    gl.glVertex3d(-0.99,0.99,-0.99);
+	    gl.glVertex3d(-0.99,-0.99,-0.99);
+	    gl.glVertex3d(-0.99,-0.99,0.99);
+	    gl.glVertex3d(-0.99,0.99,0.99);
 	    gl.glEnd();
 	    }
 	    
@@ -159,11 +159,11 @@ GL2 gl = gldrawable.getGL().getGL2();
 		    	gl.glTranslated(tempFur.coorX, tempFur.coorY, tempFur.coorZ); // coordianate of model
 		    	
 		    	tempObj.DrawModel(gl);
-		    	
+		   
 	    	gl.glPopMatrix();
 	    	
 	    }
-
+	    
 	    
 	}
 	

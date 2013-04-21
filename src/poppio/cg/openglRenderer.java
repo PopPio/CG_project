@@ -155,10 +155,10 @@ public class openglRenderer implements GLEventListener {
 	    	gl.glPushMatrix();
 	    		
 		    	gl.glScalef((float)0.1, (float)0.1, (float)0.1); // scale model down
-		    	gl.glRotatef(tempFur.rotateZ, 0, 0, (float)tempFur.coorZ);
+		    	
 		    	WavefrontObjectLoader_VertexBufferObject tempObj = tempFur.getObjectLoader();
 		    	gl.glTranslated(tempFur.coorX, tempFur.coorY, tempFur.coorZ); // coordianate of model
-		    	
+		    	gl.glRotatef(tempFur.rotateZ, 0, 0, (float)tempFur.coorZ);
 		    	tempObj.DrawModel(gl);
 		   
 	    	gl.glPopMatrix();

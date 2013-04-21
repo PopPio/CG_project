@@ -55,8 +55,8 @@ public class Main extends JFrame{
 	Color addButtonColor = new Color(0xEF7409);
 	Color addButtonOverColor = new Color(0xD66000);
 	
-	Object[] furniture_list = {"bin", "table", "chair", "cube", "sphere"};  // gonna add more
-	int[] furniture_count = {0,0,0,0,0};
+	Object[] furniture_list = {"bin", "table", "chair", "cube", "sphere", "urn", "shelf", "wardrobe"};  // gonna add more
+	int[] furniture_count = {0,0,0,0,0,0,0,0};
 	int light_count = 0;
 	
 	GLCanvas glcanvas;

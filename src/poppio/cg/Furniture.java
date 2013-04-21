@@ -46,6 +46,27 @@ public class Furniture extends roomObject{
 			this.colorR = new Float(0);
 			this.colorG = new Float(0.667);
 			this.colorB = new Float(1);
+		}else if(objectID == 6){
+			// table
+			this.name = "urn"+furnitureCount;
+			this.path = "obj/urn.obj";
+			this.colorR = new Float(0.962);
+			this.colorG = new Float(0.860);
+			this.colorB = new Float(0.317);
+		}else if(objectID == 7){
+			// table
+			this.name = "shelf"+furnitureCount;
+			this.path = "obj/shelf.obj";
+			this.colorR = new Float(0.633);
+			this.colorG = new Float(0.423);
+			this.colorB = new Float(0.240);
+		}else if(objectID == 8){
+			// table
+			this.name = "wardrobe"+furnitureCount;
+			this.path = "obj/wardrobe.obj";
+			this.colorR = new Float(0.633);
+			this.colorG = new Float(0.423);
+			this.colorB = new Float(0.240);
 		}else{ // gonna add more
 			// wtf
 		}

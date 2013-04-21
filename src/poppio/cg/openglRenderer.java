@@ -212,5 +212,7 @@ public class openglRenderer implements GLEventListener {
 	 public void addFurnitureToList(Furniture newObject){
 		 this.furnituresList.add(newObject);
 	 }
-	 
+	 public void removeFurnitureFromList(Furniture removeObject){
+		 this.furnituresList.remove(removeObject);
+	 }
 }

@@ -55,9 +55,11 @@ public class Main extends JFrame{
 	Color addButtonOverColor = new Color(0xD66000);
 	
 	Object[] furniture_list = {"bin", "table", "chair", "cube", "sphere"};  // gonna add more
-	
+	int[] furniture_count = {0,0,0,0,0};
 	GLCanvas glcanvas;
 	openglRenderer renderer;
+	
+	int idCount = 0;
 	
 	public Main () throws IOException{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -501,7 +503,10 @@ public class Main extends JFrame{
 			//System.out.println("button \"Delete\" pressed");
 			int index = getCurrentSelectedItemIndex();
 			if(index>=0){
-				String selected = (String)objectListModel.get(index);
+				
+				Furniture selected = (Furniture)objectListModel.get(index);
+				renderer.removeFurnitureFromList(selected);
+				objectListModel.removeElement(selected);
 				System.out.println("Delete "+selected);
 			}else{
 				System.out.println("No item selected, cannot delete.");
@@ -757,17 +762,18 @@ public class Main extends JFrame{
                 furniture_list,
                 "bin");
 		
+		
 		Furniture add = null;
 		for (int i = 0; i < furniture_list.length; i++) {
 			if(s.equalsIgnoreCase((String)furniture_list[i])){
-				add = new Furniture(i+1);
+				add = new Furniture(i+1,++idCount,++furniture_count[i+1]);
 				renderer.addFurnitureToList(add); // add object to furniture list in renderer
 				break;
 			}
 		}
 		
 		
-		System.out.println(add);
+		System.out.println("add "+add);
 		addObjectToList(add); // add object to display list
 	}
 }

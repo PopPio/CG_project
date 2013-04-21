@@ -478,8 +478,8 @@ public class Main extends JFrame{
 		}else if(pressedItem.getText().equalsIgnoreCase("Add Furniture")){
 			System.out.println("menu \"Add Furniture\" pressed");
 			addObject();
-		}else if(pressedItem.getText().equalsIgnoreCase("About RLS")){
-			System.out.println("menu \"About RLS\" pressed");
+		}else if(pressedItem.getText().equalsIgnoreCase("About RS")){
+			System.out.println("menu \"About RS\" pressed");
 			java.net.URL icon_URL = Main.class.getResource("img/logo.png");
 		     	BufferedImage frame_icon = null;
 				try {

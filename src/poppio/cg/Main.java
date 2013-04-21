@@ -184,7 +184,7 @@ public class Main extends JFrame{
         menu_help.setMnemonic(KeyEvent.VK_H);
         menuBar.add(menu_help);
         
-        JMenuItem menuItem_about = new JMenuItem("About RLS");
+        JMenuItem menuItem_about = new JMenuItem("About RS");
         menuItem_about.setMnemonic(KeyEvent.VK_A);
         menuItem_about.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){menuItemsPerformed(e);}});     
@@ -381,7 +381,7 @@ public class Main extends JFrame{
      	BufferedImage frame_icon = ImageIO.read(icon_URL);
      	setIconImage(frame_icon);
      	// set frame
-     	setTitle("Room Lighting Simulation");
+     	setTitle("Room Simulation");
         setSize( this.getContentPane().getPreferredSize() );
         setVisible( true );
         setLocationRelativeTo(null); // place JFrame in center of screen
@@ -488,8 +488,8 @@ public class Main extends JFrame{
 				}
 		     	ImageIcon icon = new ImageIcon(frame_icon);
 			JOptionPane.showMessageDialog(this,
-				    "Room lighting Simulation v"+version+"\nGraphics Computing 2143424\nChulalongkorn University\n\n5231222721 Chawalit Aojanepong\n5231334321 Suwichapol Jinnawong\n5500197921 Pierre-Edouard Arrouy\n\n(c) Room Lighting Simulation contributors 2013. All rights reserved.",
-				    "About Room Lighting Simulation",
+				    "Room Simulation v"+version+"\nGraphics Computing 2143424\nChulalongkorn University\n\n5231222721 Chawalit Aojanepong\n5231334321 Suwichapol Jinnawong\n5500197921 Pierre-Edouard Arrouy\n\n(c) Room Simulation contributors 2013. All rights reserved.",
+				    "About Room Simulation",
 				    JOptionPane.INFORMATION_MESSAGE,
 				    icon);
 		}
